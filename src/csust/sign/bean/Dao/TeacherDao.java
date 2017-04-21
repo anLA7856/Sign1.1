@@ -59,7 +59,6 @@ public interface TeacherDao {
 
 	public int modifyTeacherPassword(String teacher_id,String mynew);
 	
-	
-	
+
 
 }

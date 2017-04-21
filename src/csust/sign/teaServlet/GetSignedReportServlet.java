@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import csust.sign.bean.Dao.Impl.TeacherDaoImpl;
 import csust.sign.utils.HSSFWorkbookUtils;
 
 /**
@@ -18,6 +19,7 @@ import csust.sign.utils.HSSFWorkbookUtils;
  *
  */
 public class GetSignedReportServlet extends HttpServlet {
+
 
 	/**
 	 * 
@@ -32,13 +34,15 @@ public class GetSignedReportServlet extends HttpServlet {
 
 		// 首先获得参数
 		String course_id = req.getParameter("course_id");
+		String courseName = req.getParameter("courseName");
+
 		// 用于获得生成excel表格后的名字。
 		HSSFWorkbookUtils myHssf = new HSSFWorkbookUtils(course_id);
 		String fileName = myHssf.createFile(req);
 		if (fileName == null) {
 			pw.write("[0]");
 		} else {
-			pw.write(fileName);
+			pw.write(fileName+","+courseName);
 		}
 
 		pw.flush();
