@@ -33,6 +33,10 @@ public class VertifyIfCanSignServlet extends HttpServlet{
 		String allow_sign_id = req.getParameter("allow_sign_id");
 		String student_id = req.getParameter("student_id");
 		
+		if(allow_sign_id == null || student_id == null){
+			return;
+		}
+		
 		int result = sdi.vertifyIfCanSign(allow_sign_id, student_id);
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();

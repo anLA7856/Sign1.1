@@ -4,6 +4,7 @@ import java.util.List;
 
 import csust.sign.bean.SignInfo;
 import csust.sign.bean.Teacher;
+import csust.sign.bean.TeacherListInfo;
 
 public interface TeacherDao {
 	/**
@@ -19,7 +20,7 @@ public interface TeacherDao {
 	 * @param teacherID
 	 * @return
 	 */
-	public List<SignInfo> getTeacherSignInfoByTeacherID(String teacherID,String startCount);
+	public List<SignInfo> getTeacherSignInfoByTeacherID(String teacherID,String startCount,String count);
 
 	
 	/**
@@ -47,4 +48,18 @@ public interface TeacherDao {
 	 * @return
 	 */
 	public int updateWifiMacAddress(String teacher_username,String wifiMac);
+	
+	/**
+	 * 用于学生端获得教师列表。
+	 * @param student_id
+	 * @return
+	 */
+	public List<TeacherListInfo> getTeaListByStudentId(String student_id,String start,String count);
+
+
+	public int modifyTeacherPassword(String teacher_id,String mynew);
+	
+	
+	
+
 }

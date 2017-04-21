@@ -32,6 +32,11 @@ public class TeaDeleteCourse extends HttpServlet{
 			throws ServletException, IOException {
 		String course_id = req.getParameter("course_id").toString().trim();
 		
+		if(course_id == null){
+			return;
+		}
+		
+		
 		int result = cdi.teaDeleteCourse(course_id);
 		
 		resp.setContentType("text/html;charset=utf-8");

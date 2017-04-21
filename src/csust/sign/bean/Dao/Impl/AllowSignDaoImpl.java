@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import csust.sign.bean.AllowSignInfo;
+import csust.sign.bean.Allow_sign;
 import csust.sign.bean.Score;
 import csust.sign.bean.Dao.AllowSignDao;
 import csust.sign.utils.ConnectFactory;
@@ -101,6 +103,36 @@ public class AllowSignDaoImpl implements AllowSignDao{
 				score.setAllow_sign_id(rs.getInt("allow_sign_id")+"");
 				score.setScore(rs.getInt("mycount"));
 				list.add(score);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			ConnectFactory.close(pstam, rs, conn);
+		}
+		return list;
+	}
+
+
+	@Override
+	public List<AllowSignInfo> getCourseSignInfoByCourseId(String course_id) {
+		PreparedStatement pstam = null;
+		ResultSet rs = null;
+		Connection conn = null;
+		List<AllowSignInfo> list = new ArrayList<AllowSignInfo>();
+		//先暂时用来测试
+		String sql="SELECT allow_sign.`alow_sign_id`,allow_sign.`course_id`,allow_sign.`sign_time` FROM allow_sign WHERE course_id = "+course_id+" ORDER BY allow_sign.`alow_sign_id` ASC;";
+		try {
+			conn = ConnectFactory.getConnection();
+			pstam = conn.prepareStatement(sql);
+			rs = pstam.executeQuery();
+			while(rs.next()){
+				AllowSignInfo sign = new AllowSignInfo();
+				sign.setAllow_sign_id(rs.getInt("alow_sign_id"));
+				sign.setCourse_id(rs.getInt("course_id"));
+				String str = rs.getString("sign_time");
+				String myStr = str.substring(0, str.length()-2);
+				sign.setSign_time(myStr);
+				list.add(sign);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

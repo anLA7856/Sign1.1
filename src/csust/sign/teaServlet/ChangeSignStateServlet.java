@@ -37,6 +37,13 @@ public class ChangeSignStateServlet extends HttpServlet{
 		String allow_sign_id = req.getParameter("allow_sign_id");
 		String student_id = req.getParameter("student_id");
 		String signState = req.getParameter("signState");
+		
+		if(allow_sign_id == null || student_id == null || signState == null){
+			return;
+		}
+		
+		
+		
 		String decodeSignState = new String(signState.getBytes("ISO-8859-1"), "UTF-8");
 		
 		

@@ -13,14 +13,14 @@ public interface CourseDao {
 	 * @param teacher_username
 	 * @return
 	 */
-	public List<Course> getCoursesByTeacherNum(String teacher_id,String startCount,int target);
+	public List<Course> getCoursesByTeacherNum(String teacher_id,String startCount,int target,String count);
 	
 	/**
 	 * 通过学生唯一登录名，来获得所有与之相关的课程
 	 * @param student_username
 	 * @return
 	 */
-	public List<CourseInfo> getCoursesByStudentNum(String student_username,String startCount);
+	public List<CourseInfo> getCoursesByStudentNum(String student_username,String startCount,String count);
 	
 
 	/**
@@ -45,7 +45,7 @@ public interface CourseDao {
 	 * @param teacher_id
 	 * @return
 	 */
-	public List<SearchCourseInfo> getSearchCourseInfoByTeacherId(String teacher_id,String student_id);
+	public List<SearchCourseInfo> getSearchCourseInfoByTeacherId(String teacher_id,String student_id,String start,String count);
 	
 	
 	/**
@@ -53,6 +53,6 @@ public interface CourseDao {
 	 * @param course_id
 	 * @return
 	 */
-	public List<SearchCourseInfo> getSearchCourseInfoByCourseId(String course_id,String student_id);
+	public List<SearchCourseInfo> getSearchCourseInfoByCourseId(String course_id,String student_id,String start,String count);
 
 }

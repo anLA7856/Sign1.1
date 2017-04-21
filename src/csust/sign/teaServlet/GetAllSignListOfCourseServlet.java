@@ -35,6 +35,9 @@ public class GetAllSignListOfCourseServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 得到相应的课程id
 		String course_id = req.getParameter("course_id");
+		if(course_id == null){
+			return;
+		}
 
 		List<Score> list = asdi.getAllSignListByCourseId(course_id);
 		int count = scdi.getAllStudentsByCourseId(course_id);

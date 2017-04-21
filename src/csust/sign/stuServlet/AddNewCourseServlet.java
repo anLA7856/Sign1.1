@@ -39,6 +39,12 @@ public class AddNewCourseServlet extends HttpServlet{
 		String course_id = req.getParameter("course_id");
 		String student_id = req.getParameter("student_id");
 		
+		if(course_id == null || student_id == null){
+			return;
+		}
+		
+		
+		
 		int result = scdi.studentAddCourse(course_id, student_id);
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();

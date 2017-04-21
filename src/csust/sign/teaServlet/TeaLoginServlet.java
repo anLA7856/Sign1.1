@@ -33,6 +33,12 @@ public class TeaLoginServlet extends HttpServlet{
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();
 		String value = req.getParameter("value");
+		
+		if(value == null){
+			return;
+		}
+		
+		
 //		String value2 = req.getParameter("username");
 //		String value3 = req.getParameter("password");
 //		Enumeration value1 = req.getParameterNames();

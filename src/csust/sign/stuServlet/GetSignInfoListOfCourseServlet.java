@@ -39,8 +39,14 @@ public class GetSignInfoListOfCourseServlet extends HttpServlet{
 		//获得相应参数。
 		String student_id = req.getParameter("student_id");
 		String course_id = req.getParameter("course_id");
+		String start = req.getParameter("start");
+		String count = req.getParameter("count");
 		
-		List<StudentSignDetail> list = sdi.getSignListByCourseIdAndTeacherId(student_id, course_id);
+		if(student_id == null || course_id == null || start == null || count == null){
+			return;
+		}
+		
+		List<StudentSignDetail> list = sdi.getSignListByCourseIdAndTeacherId(student_id, course_id,start,count);
 		resp.setContentType("text/html;charset=utf-8");
 		//resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();

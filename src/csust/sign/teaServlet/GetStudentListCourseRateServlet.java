@@ -41,9 +41,17 @@ public class GetStudentListCourseRateServlet extends HttpServlet{
 			throws ServletException, IOException {
 		//获得course_id
 		String course_id = req.getParameter("course_id");
+		String start = req.getParameter("start");
+		String count = req.getParameter("count");
+		
+		if(course_id == null||start == null || count == null){
+			return;
+		}
+		
+		
 		//获得所有学生签到列表
 		List<StudentSignRate> list = new ArrayList<StudentSignRate>();
-		list = sdi.getAllStudentSignRate(course_id);
+		list = sdi.getAllStudentSignRate(course_id,start,count);
 		//获得本门课程所有签到数目。
 		int allSignCount = asdi.getAllSignCountByCourseId(course_id);
 		//给list添加一些必要信息。

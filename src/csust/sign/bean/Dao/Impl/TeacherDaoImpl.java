@@ -9,6 +9,7 @@ import java.util.List;
 import csust.sign.bean.SignInfo;
 import csust.sign.bean.StudentInfo;
 import csust.sign.bean.Teacher;
+import csust.sign.bean.TeacherListInfo;
 import csust.sign.bean.Dao.TeacherDao;
 import csust.sign.utils.ConnectFactory;
 
@@ -47,14 +48,14 @@ public class TeacherDaoImpl implements TeacherDao{
 	}
 
 	@Override
-	public List<SignInfo> getTeacherSignInfoByTeacherID(String teacherID,String startCount) {
+	public List<SignInfo> getTeacherSignInfoByTeacherID(String teacherID,String startCount,String count) {
 		PreparedStatement pstam = null;
 		ResultSet rs = null;
 		Connection conn = null;
 		
 		List<SignInfo> list = new ArrayList<SignInfo>();
 		//先暂时用来测试
-		String sql="SELECT allow_sign.`alow_sign_id`,course.`course_name`,allow_sign.`sign_time`,course.`course_id`,teacher.`teacher_name`,allow_sign.`target` FROM course,teacher,allow_sign WHERE course.`course_id`=allow_sign.`course_id` AND teacher.`teacher_id`="+teacherID+" AND course.`teacher_id`=teacher.`teacher_id` AND allow_sign.`target`=1 LIMIT "+startCount+",5;";
+		String sql="SELECT allow_sign.`alow_sign_id`,course.`course_name`,allow_sign.`sign_time`,course.`course_id`,teacher.`teacher_name`,allow_sign.`target` FROM course,teacher,allow_sign WHERE course.`course_id`=allow_sign.`course_id` AND teacher.`teacher_id`="+teacherID+" AND course.`teacher_id`=teacher.`teacher_id` AND allow_sign.`target`=1 LIMIT "+startCount+","+count+";";
 		try {
 			conn = ConnectFactory.getConnection();
 			pstam = conn.prepareStatement(sql);
@@ -63,7 +64,10 @@ public class TeacherDaoImpl implements TeacherDao{
 				SignInfo t = new SignInfo();
 				t.setSign_courseName(rs.getString("course_name"));
 				t.setSign_courseNum(rs.getString("course_id"));
-				t.setSign_date(rs.getDate("sign_time")+"");
+				//修改date
+				String inDate = rs.getString("sign_time");
+				String putDate = inDate.substring(0, inDate.length()-2);
+				t.setSign_date(putDate);
 				t.setSign_teacherName(rs.getString("teacher_name"));
 				t.setAlow_sign_id(rs.getString("alow_sign_id"));
 				list.add(t);
@@ -129,6 +133,59 @@ public class TeacherDaoImpl implements TeacherDao{
 		int result = 0;
 		//先暂时用来测试
 		String sql="UPDATE teacher SET teacher.`teacher_wifimac`='"+wifiMac+"' WHERE teacher.`teacher_username`='"+teacher_username+"';";
+		try {
+			conn = ConnectFactory.getConnection();
+			pstam = conn.prepareStatement(sql);
+			result = pstam.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			ConnectFactory.close(pstam, rs, conn);
+		}
+		return result;
+	}
+
+	@Override
+	public List<TeacherListInfo> getTeaListByStudentId(String student_id,String start,String count) {
+		PreparedStatement pstam = null;
+		ResultSet rs = null;
+		Connection conn = null;
+		
+		List<TeacherListInfo> list = new ArrayList<TeacherListInfo>();
+		//先暂时用来测试
+		String sql="SELECT DISTINCT teacher.`teacher_id`,teacher.`teacher_username`,teacher.`teacher_name`FROM teacher,course,student_course WHERE teacher.`teacher_id`=course.`teacher_id` AND course.`course_id`=student_course.`course_id` AND student_course.`student_id`="+student_id+" LIMIT "+start+","+count+";";
+		try {
+			conn = ConnectFactory.getConnection();
+			pstam = conn.prepareStatement(sql);
+			rs = pstam.executeQuery();
+			while(rs.next()){
+				TeacherListInfo t = new TeacherListInfo();
+				t.setTeacher_id(rs.getInt("teacher_id"));
+				t.setTeacher_name(rs.getString("teacher_name"));
+				t.setTeacher_username(rs.getString("teacher_username"));
+				
+				
+				
+
+				list.add(t);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			ConnectFactory.close(pstam, rs, conn);
+		}
+		return list;
+	}
+
+	@Override
+	public int modifyTeacherPassword(String teacher_id, String mynew) {
+		PreparedStatement pstam = null;
+		ResultSet rs = null;
+		Connection conn = null;
+		int result = 0;
+		//先暂时用来测试
+		String sql="UPDATE teacher SET teacher_password='"+mynew+"' WHERE teacher_id="+teacher_id+";";
 		try {
 			conn = ConnectFactory.getConnection();
 			pstam = conn.prepareStatement(sql);

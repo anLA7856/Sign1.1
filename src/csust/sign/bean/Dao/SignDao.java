@@ -4,6 +4,7 @@ import java.util.List;
 
 import csust.sign.bean.SignInfo;
 import csust.sign.bean.SignNameInfo;
+import csust.sign.bean.SignReportInfo;
 import csust.sign.bean.StudentSignDetail;
 import csust.sign.bean.StudentSignRate;
 
@@ -18,7 +19,7 @@ public interface SignDao {
 	 * 用于获取学生未签到的信息。
 	 * @return
 	 */
-	public List<SignInfo> getNotSignInfoByStuId(String student_id);
+	public List<SignInfo> getNotSignInfoByStuId(String student_id,String start,String count);
 	
 	/**
 	 * 用于向数据库中插入一条记录
@@ -41,7 +42,7 @@ public interface SignDao {
 	 * @param allow_sign_id
 	 * @return
 	 */
-	public List<SignNameInfo> getRealTimeSignNameInfo(String allow_sign_id);
+	public List<SignNameInfo> getRealTimeSignNameInfo(String allow_sign_id,String start,String count);
 	
 	
 	
@@ -76,7 +77,7 @@ public interface SignDao {
 	 * @param course_id
 	 * @return
 	 */
-	public List<StudentSignRate> getAllStudentSignRate(String course_id);
+	public List<StudentSignRate> getAllStudentSignRate(String course_id,String start,String count);
 	
 	
 	/**
@@ -93,7 +94,24 @@ public interface SignDao {
 	 * @param course_id
 	 * @return
 	 */
-	public List<StudentSignDetail> getSignListByCourseIdAndTeacherId(String student_id,String course_id);
+	public List<StudentSignDetail> getSignListByCourseIdAndTeacherId(String student_id,String course_id,String start,String count);
+	
+	/**
+	 * 用于在教师端实时签到中添加新的学生的签到信息。
+	 * @param sign_state
+	 * @param course_id
+	 * @param student_id
+	 * @param allow_sign_id
+	 * @return
+	 */
+	public int addNewSignInfo(String sign_state,String course_id,String student_id,String allow_sign_id);
+	
+	/**
+	 * 用于获得某一门课程的所有签到信息。
+	 * @param course_id
+	 * @return
+	 */
+	public List<SignReportInfo> getSignReportInfos(String course_id);
 }
 
 

@@ -35,6 +35,9 @@ public class TeaGetMySigningInfoServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");
 		// resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
+		if(req.getParameter("student_id") == null){
+			return;
+		}
 		if(req.getParameter("student_id").equals("")){
 			pw.write("[]");
 			pw.flush();
@@ -44,10 +47,11 @@ public class TeaGetMySigningInfoServlet extends HttpServlet {
 		// 这里仅仅是传过来的参数名不是这样而已，事实上还是teacher_id
 		String teacher_id = req.getParameter("student_id").toString();
 		String startCount = req.getParameter("startCount").toString();
+		String count = req.getParameter("count");
 
 		// 写出到页面
 		List<SignInfo> list = tdi.getTeacherSignInfoByTeacherID(teacher_id,
-				startCount);
+				startCount,count);
 		
 
 		System.out.println(list);

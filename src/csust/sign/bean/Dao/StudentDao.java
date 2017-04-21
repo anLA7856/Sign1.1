@@ -27,4 +27,27 @@ public interface StudentDao {
 	 */
 	public int addStudent(StudentInfo studentInfo);
 	
+	/**
+	 * 用于学生端更改自己的用户密码
+	 * @param student_id
+	 * @param newPassword
+	 * @return
+	 */
+	public int modifyStudentPassword(String student_id,String newPassword);
+	
+	/**
+	 * 用于获得某一次签到中未签到的学生list
+	 * @param allow_sign_id
+	 * @return
+	 */
+	public List<StudentInfo> getUnsignedStudentsByAllowSignId(String allow_sign_id);
+	
+	
+	/**
+	 * 由学生用户名获得学生id
+	 * @param student_username
+	 * @return
+	 */
+	public String getStudentIdByStudentUsername(String student_username);
+	
 }

@@ -35,6 +35,10 @@ public class UploadSignInfoServlet extends HttpServlet{
 		
 		String allow_id = req.getParameter("allow_id");
 		
+		if(student_id == null || course_id == null || allow_id == null){
+			return;
+		}
+		
 		int result = sdi.addStuentSignInfo(date+" "+time, "已签到", student_id, course_id,allow_id);
 		
 		resp.setContentType("text/html;charset=utf-8");

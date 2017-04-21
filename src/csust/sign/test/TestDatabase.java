@@ -11,7 +11,6 @@ public class TestDatabase {
 		final CourseDaoImpl c2 = new CourseDaoImpl();
 		final CourseDaoImpl c3 = new CourseDaoImpl();
 		
-		c.getCoursesByStudentNum("1","0");
 		System.out.println(c);
 		
 //		

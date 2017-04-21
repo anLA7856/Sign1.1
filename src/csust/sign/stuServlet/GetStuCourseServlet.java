@@ -49,7 +49,16 @@ public class GetStuCourseServlet extends HttpServlet{
 		
 		String student_username = req.getParameter("username");
 		String startCount = req.getParameter("startCount");
-		List<CourseInfo> list = cdi.getCoursesByStudentNum(student_username, startCount);
+		String count = req.getParameter("count");
+		
+		if(student_username == null || startCount == null || count == null){
+			return;
+		}
+		
+		
+		
+		
+		List<CourseInfo> list = cdi.getCoursesByStudentNum(student_username, startCount,count);
 		
 	
 		System.out.println(list);

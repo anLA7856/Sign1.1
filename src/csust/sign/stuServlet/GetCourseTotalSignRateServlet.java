@@ -42,6 +42,11 @@ public class GetCourseTotalSignRateServlet extends HttpServlet {
 		String student_id = req.getParameter("student_id");
 		String course_id = req.getParameter("course_id");
 		
+		if(student_id == null || course_id == null){
+			return;
+		}
+		
+		
 		int totalCount = asdi.getAllSignCountByCourseId(course_id);
 		int signCount = sdi.getCountOfSignNameByStudentIdCourseId(student_id, course_id);
 		

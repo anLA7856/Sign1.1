@@ -36,14 +36,20 @@ public class StuAddServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();
 		String value = req.getParameter("value");
+		
+		if(value == null){
+			return;
+		}
 
 		if (!value.equalsIgnoreCase("")) {
 
 			JSONObject jsonObject1 = JSONObject.fromObject(value);
 			String username = jsonObject1.get("username").toString().trim();
 			String password = jsonObject1.get("password").toString().trim();
-			String name = jsonObject1.get("name").toString().trim();
-			String sex = jsonObject1.get("sex").toString().trim();
+			String name1 = jsonObject1.get("name").toString().trim();
+			String name = new String(name1.getBytes("ISO-8859-1"), "UTF-8");
+			String sex1 = jsonObject1.get("sex").toString().trim();
+			String sex = new String(sex1.getBytes("ISO-8859-1"), "UTF-8");
 			String age = jsonObject1.get("age").toString().trim();
 			String stuNum = jsonObject1.get("stuNum").toString().trim();
 			StudentInfo student = new StudentInfo(0, name, sex, stuNum,

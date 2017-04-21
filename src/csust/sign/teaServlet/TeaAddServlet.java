@@ -45,6 +45,11 @@ public class TeaAddServlet extends HttpServlet{
 		PrintWriter pw = resp.getWriter();
 		String value = req.getParameter("value");
 
+		if(value == null){
+			return;
+		}
+		
+		
 		if (!value.equalsIgnoreCase("")) {
 
 			JSONObject jsonObject1 = JSONObject.fromObject(value);

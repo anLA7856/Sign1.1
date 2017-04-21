@@ -42,6 +42,11 @@ public class GetCourseSignInfoCountServlet extends HttpServlet {
 		// 获得参数。
 		String course_id = req.getParameter("course_id");
 
+		if(course_id == null){
+			return;
+		}
+		
+		
 		int allSignCounts = sdi.getAllSignNameCountByCourseId(course_id);
 		int allAllowSignCounts = asdi.getAllSignCountByCourseId(course_id);
 		int allStudentsOfCourse = scdi.getAllStudentsByCourseId(course_id);

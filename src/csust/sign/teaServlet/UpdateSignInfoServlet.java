@@ -31,6 +31,12 @@ public class UpdateSignInfoServlet extends HttpServlet{
 		String signDate = req.getParameter("date");
 		String signTime = req.getParameter("date2");
 		
+		if(courseId == null || signDate == null || signTime == null){
+			return;
+		}
+		
+		
+		
 		int result = asdi.addAllowSignInfo(courseId, signDate+" "+signTime);
 		resp.setContentType("text/html;charset=utf-8");
 		//resp.setCharacterEncoding("utf-8");

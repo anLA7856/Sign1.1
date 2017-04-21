@@ -31,6 +31,11 @@ public class CloseSignServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String allow_sign_id = req.getParameter("allow_sign_id");
 
+		if(allow_sign_id == null){
+			return;
+		}
+		
+		
 		int result = asdi.closeSignInfo(allow_sign_id);
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();

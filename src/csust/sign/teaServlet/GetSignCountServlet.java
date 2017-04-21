@@ -33,6 +33,10 @@ public class GetSignCountServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 获得allow_sign_id
 		String allow_sign_id = req.getParameter("allow_sign_id");
+		
+		if(allow_sign_id == null){
+			return;
+		}
 		// 已经签到的数目
 		int haveSign = sdi.getRealCountInOneSign(allow_sign_id);
 		// 本门课应该签到的总人数

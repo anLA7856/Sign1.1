@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import csust.sign.bean.Dao.Impl.CourseDaoImpl;
 
 public class UploadNewCourseServlet extends HttpServlet{
@@ -30,9 +31,23 @@ public class UploadNewCourseServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String teacher_id = req.getParameter("teacher_id");
-		String course_name = req.getParameter("course_name");
-		String description = req.getParameter("description");
+		String teacher_id=null;
+		String course_name = null;
+		String description = null;
+		
+		String value = req.getParameter("value");
+		
+		if(value == null){
+			return;
+		}
+		
+		if(!value.equalsIgnoreCase("")){
+			JSONObject jsonObject1 = JSONObject.fromObject(value);
+			teacher_id = jsonObject1.get("teacher_id").toString().trim();
+			course_name = jsonObject1.get("course_name").toString().trim();
+			description = jsonObject1.get("description").toString().trim();
+		}
+
 		String name = new String(course_name.getBytes("ISO-8859-1"), "utf-8");
 		String des = new String(description.getBytes("ISO-8859-1"), "utf-8"); 
 		

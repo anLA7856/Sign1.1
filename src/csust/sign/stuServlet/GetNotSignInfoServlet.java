@@ -35,9 +35,14 @@ public class GetNotSignInfoServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		if(req.getParameter("student_id") == null){
+			return;
+		}
 		resp.setContentType("text/html;charset=utf-8");
 		//resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
+		
+		
 		if(req.getParameter("student_id").equals("")){
 			pw.write("[]");
 			pw.flush();
@@ -47,9 +52,16 @@ public class GetNotSignInfoServlet extends HttpServlet{
 		
 		
 		String student_id = req.getParameter("student_id");
-		//String startCount = req.getParameter("startCount");
-		List<SignInfo> list = sdi.getNotSignInfoByStuId(student_id);
+		String start = req.getParameter("start");
+		String count = req.getParameter("count");
 		
+		if(student_id == null || start == null || count == null){
+			return;
+		}
+		
+		//String startCount = req.getParameter("startCount");
+		List<SignInfo> list = sdi.getNotSignInfoByStuId(student_id,start,count);
+		System.out.println(list);
 	
 		System.out.println(list);
 		pw.write(JSONArray.fromObject(list).toString());

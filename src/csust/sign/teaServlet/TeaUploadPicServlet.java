@@ -44,7 +44,6 @@ public class TeaUploadPicServlet extends HttpServlet{
 		String uploadPath = req.getSession().getServletContext().getRealPath(
 				"/teaPic");
 		boolean isMultipart = ServletFileUpload.isMultipartContent(req);
-		System.out.println();
 		if (isMultipart == true) {
 			try {
 				FileItemFactory factory = new DiskFileItemFactory();

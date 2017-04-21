@@ -37,6 +37,9 @@ public class GetTeaCourseServlet extends HttpServlet {
 		//resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
 		
+		if(req.getParameter("username") == null){
+			return;
+		}
 		
 		if(req.getParameter("username").equals("")){
 			pw.write("[]");
@@ -49,11 +52,14 @@ public class GetTeaCourseServlet extends HttpServlet {
 		String student_username = req.getParameter("username");
 		String startCount = null;
 		List<Course> list = null;
-		if(req.getParameter("startCount") == null){
-			list = cdi.getCoursesByTeacherNum(student_username, startCount,0);
+		if(req.getParameter("start") == null){
+			//在spinear中显示的。
+			list = cdi.getCoursesByTeacherNum(student_username, startCount,0,0+"");
 		}else{
-			startCount = req.getParameter("startCount");
-			list = cdi.getCoursesByTeacherNum(student_username, startCount,1);
+			//在fragment中显示。
+			startCount = req.getParameter("start");
+			String count = req.getParameter("count");
+			list = cdi.getCoursesByTeacherNum(student_username, startCount,1,count);
 		}
 	
 		

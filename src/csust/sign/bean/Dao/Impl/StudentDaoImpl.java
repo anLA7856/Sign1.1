@@ -91,4 +91,79 @@ public class StudentDaoImpl implements StudentDao{
 		return result;
 	}
 
+
+	@Override
+	public int modifyStudentPassword(String student_id, String newPassword) {
+		PreparedStatement pstam = null;
+		ResultSet rs = null;
+		Connection conn = null;
+		int result = 0;
+		//先暂时用来测试
+		String sql="UPDATE student SET student_password='"+newPassword+"' WHERE student_id="+student_id+";";
+		try {
+			conn = ConnectFactory.getConnection();
+			pstam = conn.prepareStatement(sql);
+			result = pstam.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			ConnectFactory.close(pstam, rs, conn);
+		}
+		return result;
+	}
+
+
+	@Override
+	public List<StudentInfo> getUnsignedStudentsByAllowSignId(
+			String allow_sign_id) {
+		PreparedStatement pstam = null;
+		ResultSet rs = null;
+		Connection conn = null;
+		List<StudentInfo> list = new ArrayList<StudentInfo>();
+		//先暂时用来测试
+		String sql="SELECT student.`student_id`,student.`student_username`,student.`student_name` FROM allow_sign,student,student_course WHERE allow_sign.`course_id` = student_course.`course_id` AND student_course.`student_id` = student.`student_id` AND allow_sign.`alow_sign_id`="+allow_sign_id+" AND student.`student_id` NOT IN (SELECT student_id FROM signname WHERE signname.`allow_sign_id`="+allow_sign_id+");";
+		try {
+			conn = ConnectFactory.getConnection();
+			pstam = conn.prepareStatement(sql);
+			rs = pstam.executeQuery();
+			while(rs.next()){
+				StudentInfo c = new StudentInfo();
+				c.setStudent_id(rs.getInt("student_id"));
+				c.setStudent_username(rs.getString("student_username"));
+				c.setStudent_name(rs.getString("student_name"));
+				list.add(c);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			ConnectFactory.close(pstam, rs, conn);
+		}
+		return list;
+	}
+
+
+	@Override
+	public String getStudentIdByStudentUsername(String student_username) {
+		PreparedStatement pstam = null;
+		ResultSet rs = null;
+		Connection conn = null;
+		String result = null;
+		//先暂时用来测试
+		String sql="SELECT student.`student_id` FROM student WHERE student.`student_username`='"+student_username+"';";
+		try {
+			conn = ConnectFactory.getConnection();
+			pstam = conn.prepareStatement(sql);
+			rs = pstam.executeQuery();
+			while(rs.next()){
+				result = rs.getInt("student_id")+"";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			ConnectFactory.close(pstam, rs, conn);
+		}
+		return result;
+	}
+
 }

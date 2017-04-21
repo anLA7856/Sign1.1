@@ -2,6 +2,7 @@ package csust.sign.bean.Dao;
 
 import java.util.List;
 
+import csust.sign.bean.AllowSignInfo;
 import csust.sign.bean.Score;
 
 public interface AllowSignDao {
@@ -35,6 +36,13 @@ public interface AllowSignDao {
 	 * @return 返回包括allowsignid和已签到数目。
 	 */
 	public List<Score> getAllSignListByCourseId(String course_id);
+	
+	/**
+	 * 通过课程id来获得本门课程的所有签到情况。
+	 * @param course_id
+	 * @return
+	 */
+	public List<AllowSignInfo> getCourseSignInfoByCourseId(String course_id);
 	
 	
 }
