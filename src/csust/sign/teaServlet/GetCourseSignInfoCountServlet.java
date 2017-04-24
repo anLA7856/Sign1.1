@@ -70,9 +70,7 @@ public class GetCourseSignInfoCountServlet extends HttpServlet {
 		// resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
 
-		System.out.println("myresult:"+myresult);
 		
-		System.out.println(myresult);
 		pw.write(myresult+"");
 		pw.flush();
 		pw.close();

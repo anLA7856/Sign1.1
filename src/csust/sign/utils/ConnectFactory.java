@@ -12,25 +12,7 @@ public class ConnectFactory {
 	private static Context envContext = null;
 	private static DataSource ds = null;
 
-//	
-//	{
-//		try {
-//			if(ctx == null){
-//				ctx = new InitialContext();
-//			}
-//			if(envContext == null){
-//				envContext = (Context) ctx.lookup("java:/comp/env");
-//			}
-//			//ctx = new InitialContext();
-//			if(ds == null){
-//				ds = (DataSource) envContext.lookup("jdbc/sign");
-//			}
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.out.println("初始化数据源失败！");
-//		}
-//	}
+
 	
 	
 
@@ -57,7 +39,6 @@ public class ConnectFactory {
 			conn = ds.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("获取数据连接失败！");
 		}
 		
 	

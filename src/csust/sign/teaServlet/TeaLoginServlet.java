@@ -53,7 +53,6 @@ public class TeaLoginServlet extends HttpServlet{
 			if(list.size() == 0){
 				//用户不存在
 				pw.print("nouser");
-				System.out.println("nouser");
 			}else{
 				Teacher teacher = list.get(0);
 				if(password.equals(teacher.getTeacher_password())){
@@ -62,13 +61,11 @@ public class TeaLoginServlet extends HttpServlet{
 					tdi.updateWifiMacAddress(username, wifiMac);
 					teacher.setTeacher_wifimac(wifiMac);
 					pw.print(JSONArray.fromObject(teacher).toString());
-					System.out.println(JSONArray.fromObject(teacher).toString());
 					//更新当前教师的wifimac地址
 					
 				}else{
 					//用户存在但密码不正确
 					pw.print("nopass");
-					System.out.println("nopass");
 				}
 			}
 			

@@ -64,12 +64,10 @@ public class CourseDaoImpl implements CourseDao{
 		//先暂时用来测试
 		String sql="SELECT course.`course_id`,teacher.`teacher_username`,teacher.`teacher_name`,course.`course_name`FROM teacher,course,student_course,student WHERE teacher.`teacher_id`=course.`teacher_id` AND student_course.`student_id`=student.`student_id` AND student.`student_username`='"+student_username+"' AND student_course.`course_id`=course.`course_id` ORDER BY course.`course_id` ASC LIMIT "+startCount+","+count+";";
 		try {
-			System.out.println(sql);
 			conn = ConnectFactory.getConnection();
 			pstam = conn.prepareStatement(sql);
 			rs = pstam.executeQuery();
 			while(rs.next()){
-				System.out.println(rs.getString(1));
 				CourseInfo c = new CourseInfo();
 				c.setCourse_id(rs.getInt("course_id")+"");
 				c.setCourseName(rs.getString("course_name"));
@@ -78,7 +76,6 @@ public class CourseDaoImpl implements CourseDao{
 				list.add(c);
 			}
 		} catch (Exception e) {
-			System.out.println();
 			e.printStackTrace();
 		} finally{
 			ConnectFactory.close(pstam, rs, conn);
@@ -96,13 +93,11 @@ public class CourseDaoImpl implements CourseDao{
 		//先暂时用来测试
 		String sql="INSERT INTO course (course_name,teacher_id,course_description) VALUES('"+course_name+"',"+teacher_id+",'"+description+"');";
 		try {
-			System.out.println(sql);
 			conn = ConnectFactory.getConnection();
 			pstam = conn.prepareStatement(sql);
 			result = pstam.executeUpdate();
 			
 		} catch (Exception e) {
-			System.out.println();
 			e.printStackTrace();
 		} finally{
 			ConnectFactory.close(pstam, rs, conn);
@@ -119,7 +114,6 @@ public class CourseDaoImpl implements CourseDao{
 		//先暂时用来测试
 		String sql="DELETE FROM course WHERE course_id = "+course_id+";";
 		try {
-			System.out.println(sql);
 			conn = ConnectFactory.getConnection();
 			pstam = conn.prepareStatement(sql);
 			result = pstam.executeUpdate();
@@ -142,7 +136,6 @@ public class CourseDaoImpl implements CourseDao{
 		//先暂时用来测试
 		String sql="SELECT course.`course_id`,course.`course_name`,course.`teacher_id`,teacher.`teacher_name` FROM course,teacher WHERE course.`teacher_id` = teacher.`teacher_id` AND teacher.`teacher_id`='"+teacher_id+"' AND course.`course_id` NOT IN (SELECT course_id FROM student_course WHERE student_id="+student_id+") LIMIT "+start+","+count+";";
 		try {
-			System.out.println(sql);
 			conn = ConnectFactory.getConnection();
 			pstam = conn.prepareStatement(sql);
 			rs = pstam.executeQuery();
@@ -173,7 +166,6 @@ public class CourseDaoImpl implements CourseDao{
 		//先暂时用来测试
 		String sql="SELECT course.`course_id`,course.`course_name`,course.`teacher_id`,teacher.`teacher_name` FROM course,teacher WHERE course.`teacher_id` = teacher.`teacher_id` AND course.`course_id` LIKE '%"+course_id+"%' AND course.`course_id` NOT IN (SELECT course_id FROM student_course WHERE student_id="+student_id+") LIMIT "+start+","+count+"";
 		try {
-			System.out.println(sql);
 			conn = ConnectFactory.getConnection();
 			pstam = conn.prepareStatement(sql);
 			rs = pstam.executeQuery();

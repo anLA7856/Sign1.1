@@ -36,8 +36,6 @@ public class SignDaoImpl implements SignDao{
 			rs = pstam.executeQuery();
 			while(rs.next()){
 				SignInfo c = new SignInfo();
-				System.out.println(rs.toString());
-				System.out.println(rs.getString(1));
 				c.setSign_courseName(rs.getString("course_name"));
 				c.setSign_courseNum(rs.getString("course_id"));
 				String inDate = rs.getString("sign_time");
@@ -49,7 +47,6 @@ public class SignDaoImpl implements SignDao{
 				list.add(c);
 			}
 		} catch (Exception e) {
-			System.out.println();
 			e.printStackTrace();
 		} finally{
 			ConnectFactory.close(pstam, rs, conn);
@@ -176,7 +173,6 @@ public class SignDaoImpl implements SignDao{
 		//先暂时用来测试
 		String sql="UPDATE signname SET sign_state = '"+result+"' WHERE allow_sign_id = "+allow_sign_id+" AND student_id = "+student_id+";";
 		try {
-			System.out.println("sql:"+sql);
 			conn = ConnectFactory.getConnection();
 			pstam = conn.prepareStatement(sql);
 			myresult = pstam.executeUpdate();
@@ -312,7 +308,6 @@ public class SignDaoImpl implements SignDao{
 		//先暂时用来测试
 		String sql="insert into signname(sign_time,sign_state,course_id,student_id,allow_sign_id) values(now(),'"+sign_state+"',"+course_id+","+student_id+","+allow_sign_id+");";
 		try {
-			System.out.println("sql:"+sql);
 			conn = ConnectFactory.getConnection();
 			pstam = conn.prepareStatement(sql);
 			result = pstam.executeUpdate();

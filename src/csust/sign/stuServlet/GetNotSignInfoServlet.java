@@ -61,9 +61,7 @@ public class GetNotSignInfoServlet extends HttpServlet{
 		
 		//String startCount = req.getParameter("startCount");
 		List<SignInfo> list = sdi.getNotSignInfoByStuId(student_id,start,count);
-		System.out.println(list);
 	
-		System.out.println(list);
 		pw.write(JSONArray.fromObject(list).toString());
 		pw.flush();
 		pw.close();

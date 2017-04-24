@@ -61,7 +61,6 @@ public class GetStuCourseServlet extends HttpServlet{
 		List<CourseInfo> list = cdi.getCoursesByStudentNum(student_username, startCount,count);
 		
 	
-		System.out.println(list);
 		pw.write(JSONArray.fromObject(list).toString());
 		pw.flush();
 		pw.close();

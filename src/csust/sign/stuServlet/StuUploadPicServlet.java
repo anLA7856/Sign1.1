@@ -38,7 +38,6 @@ public class StuUploadPicServlet extends HttpServlet {
 		String uploadPath = req.getSession().getServletContext().getRealPath(
 				"/stuPic");
 		boolean isMultipart = ServletFileUpload.isMultipartContent(req);
-		System.out.println();
 		if (isMultipart == true) {
 			try {
 				FileItemFactory factory = new DiskFileItemFactory();

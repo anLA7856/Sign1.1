@@ -41,7 +41,6 @@ public class VertifyIfCanSignServlet extends HttpServlet{
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();
 		
-		System.out.println(result);
 		pw.write(JSONArray.fromObject(result).toString());
 		pw.flush();
 		pw.close();

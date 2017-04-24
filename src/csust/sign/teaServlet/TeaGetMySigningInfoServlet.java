@@ -54,7 +54,6 @@ public class TeaGetMySigningInfoServlet extends HttpServlet {
 				startCount,count);
 		
 
-		System.out.println(list);
 		pw.write(JSONArray.fromObject(list).toString());
 		pw.flush();
 		pw.close();

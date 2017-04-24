@@ -51,7 +51,6 @@ public class GetSignInfoListOfCourseServlet extends HttpServlet{
 		//resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
 	
-		System.out.println(list);
 		pw.write(JSONArray.fromObject(list).toString());
 		pw.flush();
 		pw.close();

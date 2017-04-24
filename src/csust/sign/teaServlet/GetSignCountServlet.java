@@ -47,7 +47,6 @@ public class GetSignCountServlet extends HttpServlet {
 		// resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
 
-		System.out.println(str);
 		pw.write(str);
 		pw.flush();
 		pw.close();

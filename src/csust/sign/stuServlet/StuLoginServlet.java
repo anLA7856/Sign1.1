@@ -55,17 +55,14 @@ public class StuLoginServlet extends HttpServlet{
 			if(list.size() == 0){
 				//用户不存在
 				pw.print("nouser");
-				System.out.println("nouser");
 			}else{
 				StudentInfo student = list.get(0);
 				if(password.equals(student.getStudent_password())){
 					//用户存在切密码正确
 					pw.print(JSONArray.fromObject(student).toString());
-					System.out.println(JSONArray.fromObject(student).toString());
 				}else{
 					//用户存在但密码不正确
 					pw.print("nopass");
-					System.out.println("nopass");
 				}
 			}
 			

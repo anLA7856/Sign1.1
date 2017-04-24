@@ -43,7 +43,6 @@ public class TeaDeleteCourse extends HttpServlet{
 		PrintWriter pw = resp.getWriter();
 
 		
-		System.out.println(result);
 		pw.write(JSONArray.fromObject(result).toString());
 		pw.flush();
 		pw.close();

@@ -65,7 +65,6 @@ public class GetTeaCourseServlet extends HttpServlet {
 		
 	
 		
-		System.out.println(list);
 		pw.write(JSONArray.fromObject(list).toString());
 		pw.flush();
 		pw.close();

@@ -59,7 +59,6 @@ public class GetCourseTotalSignRateServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();
 
-		System.out.println(myResult);
 		pw.write(myResult+","+totalCount+","+signCount);
 		pw.flush();
 		pw.close();

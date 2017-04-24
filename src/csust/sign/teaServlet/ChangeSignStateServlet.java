@@ -53,7 +53,6 @@ public class ChangeSignStateServlet extends HttpServlet{
 		// resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
 
-		System.out.println(result);
 		pw.write(JSONArray.fromObject(result).toString());
 		pw.flush();
 		pw.close();
