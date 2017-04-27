@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import csust.sign.bean.ChatMessage;
 import csust.sign.bean.StudentInfo;
+import csust.sign.bean.Dao.Impl.ChatMessageDaoImpl;
 import csust.sign.bean.Dao.Impl.StudentDaoImpl;
+import csust.sign.utils.ParameterUtil;
 
 public class StuChatMessageAddServlet extends HttpServlet {
 
@@ -21,7 +24,7 @@ public class StuChatMessageAddServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private StudentDaoImpl sdi = new StudentDaoImpl();
+	private ChatMessageDaoImpl cmdi = new ChatMessageDaoImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -35,44 +38,23 @@ public class StuChatMessageAddServlet extends HttpServlet {
 		// 后期必须采用加密策略
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();
-		String value = req.getParameter("value");
+		String studentId = req.getParameter("studentId");
+		String teacherId = req.getParameter("teacherId");
+		String message = req.getParameter("message");
 		
-		if(value == null){
+		if(!ParameterUtil.parameterTest(studentId,teacherId,message)){
 			return;
 		}
+		ChatMessage cm = new ChatMessage();
+		cm.setSenderId(Integer.parseInt(studentId.toString()));
+		cm.setReceiveId(Integer.parseInt(teacherId.toString()));
+		cm.setMessage(message.toString());
+		//保存。
+		
+		int validate = cmdi.addNewMessage(cm);
+		pw.print(validate);
+		pw.flush();
+		pw.close();
 
-		if (!value.equalsIgnoreCase("")) {
-
-			JSONObject jsonObject1 = JSONObject.fromObject(value);
-			String username = jsonObject1.get("username").toString().trim();
-			String password = jsonObject1.get("password").toString().trim();
-			String name1 = jsonObject1.get("name").toString().trim();
-			String name = new String(name1.getBytes("ISO-8859-1"), "UTF-8");
-			String sex1 = jsonObject1.get("sex").toString().trim();
-			String sex = new String(sex1.getBytes("ISO-8859-1"), "UTF-8");
-			String age = jsonObject1.get("age").toString().trim();
-			String stuNum = jsonObject1.get("stuNum").toString().trim();
-			StudentInfo student = new StudentInfo(0, name, sex, stuNum,
-					username, password);
-			int validate = sdi.validataUsername(username);
-			if (validate == 1) {
-				// 表示该用户名已经被注册了，不能注册了
-				pw.print("no");
-			} else {
-				// 可以注册
-				int result = sdi.addStudent(student);
-				if (result == 1) {
-					// 注册成功！
-					pw.print("ok");
-				} else {
-					// 不明原因注册失败
-					pw.print("fail");
-				}
-			}
-
-			pw.flush();
-			pw.close();
-
-		}
 	}
 }
