@@ -146,7 +146,15 @@
 	    <servlet-name>stuDeleteCourse</servlet-name>
 	    <url-pattern>/stuDeleteCourse</url-pattern>
 	</servlet-mapping>
- 	
+	<!-- 用于学生端上传一条聊天消息 -->
+ 	<servlet>
+	    <servlet-name>stuChatMessageAddServlet</servlet-name>
+	    <servlet-class>csust.sign.stuServlet.StuChatMessageAddServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>stuChatMessageAddServlet</servlet-name>
+	    <url-pattern>/stuChatMessageAddServlet</url-pattern>
+	</servlet-mapping>
  	
  	
  	
