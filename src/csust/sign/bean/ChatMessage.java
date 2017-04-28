@@ -2,12 +2,18 @@ package csust.sign.bean;
 
 import java.sql.Date;
 
+/**
+ * 聊天实体类。
+ * @author U-ANLA
+ *
+ */
 public class ChatMessage {
 	private Integer id;
 	private Integer senderId;
 	private Integer receiveId;
 	private String message;
 	private Date chatTime;
+	private Integer notRead;
 	public Integer getId() {
 		return id;
 	}
@@ -38,12 +44,21 @@ public class ChatMessage {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
+	public Integer getNotRead() {
+		return notRead;
+	}
+	public void setNotRead(Integer notRead) {
+		this.notRead = notRead;
+	}
 	@Override
 	public String toString() {
 		return "ChatMessage [id=" + id + ", senderId=" + senderId
 				+ ", receiveId=" + receiveId + ", message=" + message
-				+ ", chatTime=" + chatTime + "]";
+				+ ", chatTime=" + chatTime + ", notRead=" + notRead + "]";
 	}
+	
+	
 	
 	
 	
