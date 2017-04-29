@@ -14,8 +14,7 @@ import csust.sign.bean.ChatMessage;
 import csust.sign.bean.Dao.Impl.ChatMessageDaoImpl;
 import csust.sign.utils.ParameterUtil;
 
-public class StuGetAllChatMessageServlet extends HttpServlet{
-
+public class StuGetNewChatMessageServlet extends HttpServlet{
 	/**
 	 * 
 	 */
@@ -26,29 +25,21 @@ public class StuGetAllChatMessageServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		doPost(req, resp);
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		//获得相应参数。
+		super.doGet(req, resp);
 		String studentId = req.getParameter("studentId");
-		int[] ids;
-		
 		if(!ParameterUtil.parameterTest(studentId)){
 			return;
 		}
-
-		List<ChatMessage> list = cmdi.getAllMessages(Integer.parseInt(studentId));
-		ids = new int[list.size()];
+		List<ChatMessage> list = cmdi.getNotReadMessages(Integer.parseInt(studentId.toString()));
+		
+		//将所有的已读的，都修改为已读。而不能一概而论，吧not_read为1的都改为了，可能有并发，然后新消息来了，这次轮询没查到。
+		int[] ids = new int[list.size()];
 		for(int i = 0;i < list.size();i++){
 			ids[i] = list.get(i).getId();
 		}
 		cmdi.modifyMessageState(ids);
 		
 		resp.setContentType("text/html;charset=utf-8");
-		//resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
 	
 		pw.write(JSONArray.fromObject(list).toString());

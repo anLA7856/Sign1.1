@@ -163,7 +163,7 @@
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>stuGetAllChatMessageServlet</servlet-name>
-	    <url-pattern>/stuGetAllChatMessaget</url-pattern>
+	    <url-pattern>/stuGetAllChatMessage</url-pattern>
 	</servlet-mapping>
  	
  	
