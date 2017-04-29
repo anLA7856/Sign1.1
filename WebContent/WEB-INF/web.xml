@@ -153,7 +153,17 @@
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>stuChatMessageAddServlet</servlet-name>
-	    <url-pattern>/stuChatMessageAddServlet</url-pattern>
+	    <url-pattern>/stuChatMessageAdd</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 用于学生端获得所有数据库中保存的聊天消息 -->
+ 	<servlet>
+	    <servlet-name>stuGetAllChatMessageServlet</servlet-name>
+	    <servlet-class>csust.sign.stuServlet.StuGetAllChatMessageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>stuGetAllChatMessageServlet</servlet-name>
+	    <url-pattern>/stuGetAllChatMessaget</url-pattern>
 	</servlet-mapping>
  	
  	

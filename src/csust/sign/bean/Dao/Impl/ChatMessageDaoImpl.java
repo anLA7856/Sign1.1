@@ -54,12 +54,17 @@ public class ChatMessageDaoImpl implements ChatMessageDao {
 			rs = pstam.executeQuery();
 			while (rs.next()) {
 				ChatMessage c = new ChatMessage();
-				c.setChatTime(rs.getDate("chat_time"));
+				c.setChatTime(rs.getDate("chat_time").getTime()+"");
 				c.setId(rs.getInt("id"));
 				c.setMessage(rs.getString("message"));
 				c.setNotRead(rs.getInt("not_read"));
 				c.setReceiveId(rs.getInt("receiver_id"));
 				c.setSenderId(rs.getInt("sender_id"));
+				if(rs.getInt("receiver_id") == receiveId){
+					c.setIsCome(1+"");
+				}else{
+					c.setIsCome(0+"");
+				}
 				list.add(c);
 			}
 		} catch (Exception e) {
@@ -85,12 +90,17 @@ public class ChatMessageDaoImpl implements ChatMessageDao {
 			rs = pstam.executeQuery();
 			while (rs.next()) {
 				ChatMessage c = new ChatMessage();
-				c.setChatTime(rs.getDate("chat_time"));
+				c.setChatTime(rs.getDate("chat_time").getTime()+"");
 				c.setId(rs.getInt("id"));
 				c.setMessage(rs.getString("message"));
 				c.setNotRead(rs.getInt("not_read"));
 				c.setReceiveId(rs.getInt("receiver_id"));
 				c.setSenderId(rs.getInt("sender_id"));
+				if(rs.getInt("receiver_id") == receiveId){
+					c.setIsCome(1+"");
+				}else{
+					c.setIsCome(0+"");
+				}
 				list.add(c);
 			}
 		} catch (Exception e) {
