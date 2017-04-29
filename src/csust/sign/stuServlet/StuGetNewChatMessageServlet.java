@@ -23,9 +23,15 @@ public class StuGetNewChatMessageServlet extends HttpServlet{
 	private ChatMessageDaoImpl cmdi = new ChatMessageDaoImpl();
 	
 	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		doGet(req, resp);
+	}
+	
+	
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		super.doGet(req, resp);
 		String studentId = req.getParameter("studentId");
 		if(!ParameterUtil.parameterTest(studentId)){
 			return;
@@ -37,11 +43,14 @@ public class StuGetNewChatMessageServlet extends HttpServlet{
 		for(int i = 0;i < list.size();i++){
 			ids[i] = list.get(i).getId();
 		}
-		cmdi.modifyMessageState(ids);
+		if(ids.length != 0){
+			cmdi.modifyMessageState(ids);
+		}
+		
 		
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();
-	
+		//System.out.println("访问了一次");
 		pw.write(JSONArray.fromObject(list).toString());
 		pw.flush();
 		pw.close();
