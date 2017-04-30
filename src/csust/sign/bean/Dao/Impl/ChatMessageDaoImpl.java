@@ -90,7 +90,8 @@ public class ChatMessageDaoImpl implements ChatMessageDao {
 			rs = pstam.executeQuery();
 			while (rs.next()) {
 				ChatMessage c = new ChatMessage();
-				c.setChatTime(rs.getDate("chat_time").getTime()+"");
+				c.setChatTime(rs.getTimestamp("chat_time").getTime()+"");
+
 				c.setId(rs.getInt("id"));
 				c.setMessage(rs.getString("message"));
 				c.setNotRead(rs.getInt("not_read"));
