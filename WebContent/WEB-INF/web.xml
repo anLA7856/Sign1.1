@@ -379,7 +379,15 @@
         <url-pattern>/getSignedReport</url-pattern>
     </servlet-mapping>
     
-    
+    <!-- 用于教师端获得某一门课的所有学生列表。 -->
+    <servlet>
+        <servlet-name>getCourseStudentListServlet</servlet-name>
+        <servlet-class>csust.sign.teaServlet.GetCourseStudentListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getCourseStudentListServlet</servlet-name>
+        <url-pattern>/getCourseStudentList</url-pattern>
+    </servlet-mapping>
     
     
     
