@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import csust.sign.bean.AllowSignInfo;
+import csust.sign.bean.Course;
+import csust.sign.bean.CourseStudentListInfo;
 import csust.sign.bean.StudentInfo;
 import csust.sign.bean.StudentReportInfo;
 import csust.sign.bean.Dao.StudentCourseDao;
@@ -136,36 +137,48 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 	}
 
 	@Override
-	public List<StudentInfo> getAllStudentsListByCourseId(String courseId) {
+	public List<CourseStudentListInfo> getAllStudentsListByTeacherId(String teacherId) {
 		PreparedStatement pstam = null;
 		ResultSet rs = null;
 		Connection conn = null;
-		List<StudentInfo> list = new ArrayList<StudentInfo>();
-		// 先暂时用来测试
 		String sql = "SELECT student.`student_id`,student.`student_name`,student.`student_num`,student.`student_sex`,student.`student_username` "
 				+ "FROM student,student_course,course "
 				+ "WHERE student.`student_id`=student_course.`student_id`"
 				+ " AND student_course.`course_id`=course.`course_id`"
 				+ " AND course.`course_id`=?;";
-		try {
-			conn = ConnectFactory.getConnection();
-			pstam = conn.prepareStatement(sql);
-			pstam.setInt(1, Integer.parseInt(courseId.trim()));
-			rs = pstam.executeQuery();
-			while (rs.next()) {
-				StudentInfo student = new StudentInfo();
-				student.setStudent_id(rs.getInt("student_id"));
-				student.setStudent_name(rs.getString("student_name"));
-				student.setStudent_num(rs.getString("student_num"));
-				student.setStudent_sex(rs.getString("student_sex"));
-				student.setStudent_username(rs.getString("student_username"));
-				list.add(student);
+		List<CourseStudentListInfo> list = new ArrayList<CourseStudentListInfo>();
+		List<Course> listCourse= new CourseDaoImpl().getCoursesByTeacherNum(teacherId, 1+"", 0, 1+"");
+		List<StudentInfo> listStudent = null;
+		// 先暂时用来测试,这段代码即将写的很烂。
+		conn = ConnectFactory.getConnection();
+		
+		for(int i = 0;i < listCourse.size();i++){
+			CourseStudentListInfo csl = new CourseStudentListInfo();
+			csl.setCourse(listCourse.get(i));
+			try {
+				pstam = conn.prepareStatement(sql);
+				pstam.setInt(1,listCourse.get(i).getCourse_id());
+				rs = pstam.executeQuery();
+				listStudent = new ArrayList<StudentInfo>();
+				while (rs.next()) {
+					StudentInfo student = new StudentInfo();
+					student.setStudent_id(rs.getInt("student_id"));
+					student.setStudent_name(rs.getString("student_name"));
+					student.setStudent_num(rs.getString("student_num"));
+					student.setStudent_sex(rs.getString("student_sex"));
+					student.setStudent_username(rs.getString("student_username"));
+					listStudent.add(student);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectFactory.close(pstam, rs, conn);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ConnectFactory.close(pstam, rs, conn);
+			csl.setList(listStudent);
+			list.add(csl);
 		}
+		
+		
 		return list;
 	}
 

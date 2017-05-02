@@ -2,7 +2,7 @@ package csust.sign.bean.Dao;
 
 import java.util.List;
 
-import csust.sign.bean.StudentInfo;
+import csust.sign.bean.CourseStudentListInfo;
 import csust.sign.bean.StudentReportInfo;
 
 public interface StudentCourseDao {
@@ -50,5 +50,5 @@ public interface StudentCourseDao {
 	 * @param courseId
 	 * @return
 	 */
-	public List<StudentInfo> getAllStudentsListByCourseId(String courseId);
+	public List<CourseStudentListInfo> getAllStudentsListByTeacherId(String courseId);
 }

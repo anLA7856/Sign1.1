@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import csust.sign.bean.CourseStudentListInfo;
 import csust.sign.bean.StudentInfo;
 import csust.sign.bean.Dao.Impl.StudentCourseDaoImpl;
 import csust.sign.utils.ParameterUtil;
@@ -27,12 +28,12 @@ public class GetCourseStudentListServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String courseId = req.getParameter("courseId");
-		if(!ParameterUtil.parameterTest(courseId)){
+		String teacherId = req.getParameter("teacherId");
+		if(!ParameterUtil.parameterTest(teacherId)){
 			return;
 		}
 		
-		List<StudentInfo> list = scdi.getAllStudentsListByCourseId(courseId);
+		List<CourseStudentListInfo> list = scdi.getAllStudentsListByTeacherId(teacherId);
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();
 
