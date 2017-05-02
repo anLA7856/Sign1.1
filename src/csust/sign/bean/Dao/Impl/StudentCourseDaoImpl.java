@@ -172,13 +172,13 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				ConnectFactory.close(pstam, rs, conn);
+				//
 			}
 			csl.setList(listStudent);
 			list.add(csl);
 		}
 		
-		
+		ConnectFactory.close(pstam, rs, conn);
 		return list;
 	}
 
