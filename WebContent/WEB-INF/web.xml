@@ -9,6 +9,7 @@
         <res-auth>Container</res-auth>
     </resource-ref>
     <!-- 用于获得学生所有课程的servlet -->
+
     <servlet>
         <servlet-name>getStuCourse</servlet-name>
         <servlet-class>csust.sign.stuServlet.GetStuCourseServlet</servlet-class>
