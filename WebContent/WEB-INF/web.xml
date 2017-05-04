@@ -390,8 +390,14 @@
         <url-pattern>/getCourseStudentList</url-pattern>
     </servlet-mapping>
     
-    
-    
+    <servlet>
+        <servlet-name>teaChatMessageAddServlet</servlet-name>
+        <servlet-class>csust.sign.teaServlet.TeaChatMessageAddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teaChatMessageAddServlet</servlet-name>
+        <url-pattern>/teaChatMessageAdd</url-pattern>
+    </servlet-mapping>
     
 </web-app>
 
