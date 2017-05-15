@@ -14,6 +14,12 @@ import csust.sign.bean.Score;
 import csust.sign.bean.Dao.Impl.AllowSignDaoImpl;
 import csust.sign.bean.Dao.Impl.StudentCourseDaoImpl;
 
+/**
+ * 得到某一门课程的所有签到列表
+ * 
+ * @author anLA7856
+ *
+ */
 public class GetAllSignListOfCourseServlet extends HttpServlet {
 
 	/**
@@ -35,7 +41,7 @@ public class GetAllSignListOfCourseServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 得到相应的课程id
 		String course_id = req.getParameter("course_id");
-		if(course_id == null){
+		if (course_id == null) {
 			return;
 		}
 
@@ -48,7 +54,7 @@ public class GetAllSignListOfCourseServlet extends HttpServlet {
 
 				float myScore = list.get(i).getScore();
 				float myCount = count;
-				float myRate = (myScore / myCount)*100;
+				float myRate = (myScore / myCount) * 100;
 				rate = (int) myRate;
 
 			}

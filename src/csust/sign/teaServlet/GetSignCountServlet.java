@@ -8,10 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
 import csust.sign.bean.Dao.Impl.SignDaoImpl;
 import csust.sign.bean.Dao.Impl.StudentCourseDaoImpl;
 
+/**
+ * 得到总签到次数
+ * 
+ * @author anLA7856
+ *
+ */
 public class GetSignCountServlet extends HttpServlet {
 
 	/**
@@ -33,8 +38,8 @@ public class GetSignCountServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 获得allow_sign_id
 		String allow_sign_id = req.getParameter("allow_sign_id");
-		
-		if(allow_sign_id == null){
+
+		if (allow_sign_id == null) {
 			return;
 		}
 		// 已经签到的数目

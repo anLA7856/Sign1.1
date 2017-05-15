@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
 import csust.sign.bean.Dao.Impl.AllowSignDaoImpl;
 import csust.sign.bean.Dao.Impl.SignDaoImpl;
 import csust.sign.bean.Dao.Impl.StudentCourseDaoImpl;
@@ -16,7 +15,7 @@ import csust.sign.bean.Dao.Impl.StudentCourseDaoImpl;
 /**
  * 用于某一位老师获得某一门课程的签到率
  * 
- * @author U-anLA
+ * @author anLA7856
  *
  */
 public class GetCourseSignInfoCountServlet extends HttpServlet {
@@ -42,36 +41,31 @@ public class GetCourseSignInfoCountServlet extends HttpServlet {
 		// 获得参数。
 		String course_id = req.getParameter("course_id");
 
-		if(course_id == null){
+		if (course_id == null) {
 			return;
 		}
-		
-		
+
 		int allSignCounts = sdi.getAllSignNameCountByCourseId(course_id);
 		int allAllowSignCounts = asdi.getAllSignCountByCourseId(course_id);
 		int allStudentsOfCourse = scdi.getAllStudentsByCourseId(course_id);
 
-
-		
-		
 		float asc = allSignCounts;
 		float aasc = allAllowSignCounts;
 		float asof = allStudentsOfCourse;
 
 		float result = 0;
-		
-		if(!(allAllowSignCounts == 0 || allStudentsOfCourse == 0)){
+
+		if (!(allAllowSignCounts == 0 || allStudentsOfCourse == 0)) {
 			result = asc / (aasc * asof);
 			result *= 100;
 		}
-		
+
 		int myresult = (int) result;
 		resp.setContentType("text/html;charset=utf-8");
 		// resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
 
-		
-		pw.write(myresult+"");
+		pw.write(myresult + "");
 		pw.flush();
 		pw.close();
 

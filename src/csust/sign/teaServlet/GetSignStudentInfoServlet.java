@@ -13,6 +13,12 @@ import net.sf.json.JSONArray;
 import csust.sign.bean.SignNameInfo;
 import csust.sign.bean.Dao.Impl.SignDaoImpl;
 
+/**
+ * 得到钱啊对哦学生信息
+ * 
+ * @author anLA7856
+ *
+ */
 public class GetSignStudentInfoServlet extends HttpServlet {
 
 	/**
@@ -34,13 +40,13 @@ public class GetSignStudentInfoServlet extends HttpServlet {
 		String allow_sign_id = req.getParameter("allow_sign_id");
 		String start = req.getParameter("start");
 		String count = req.getParameter("count");
-		
-		if(allow_sign_id == null || start == null || count == null){
+
+		if (allow_sign_id == null || start == null || count == null) {
 			return;
 		}
-		
-		
-		List<SignNameInfo> list = sdi.getRealTimeSignNameInfo(allow_sign_id,start,count);
+
+		List<SignNameInfo> list = sdi.getRealTimeSignNameInfo(allow_sign_id,
+				start, count);
 
 		resp.setContentType("text/html;charset=utf-8");
 		// resp.setCharacterEncoding("utf-8");

@@ -15,10 +15,11 @@ import csust.sign.bean.Dao.Impl.StudentDaoImpl;
 
 /**
  * 用于获得某一次签到未签到的学生信息。
- * @author U-ANLA
+ * 
+ * @author anLA7856
  *
  */
-public class GetUnsignedStudentsServlet extends HttpServlet{
+public class GetUnsignedStudentsServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -29,13 +30,13 @@ public class GetUnsignedStudentsServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String allow_sign_id = req.getParameter("allow_sign_id");
-		
-		if(allow_sign_id == null){
+
+		if (allow_sign_id == null) {
 			return;
 		}
-		
-		
-		List<StudentInfo> list = new StudentDaoImpl().getUnsignedStudentsByAllowSignId(allow_sign_id);
+
+		List<StudentInfo> list = new StudentDaoImpl()
+				.getUnsignedStudentsByAllowSignId(allow_sign_id);
 		resp.setContentType("text/html;charset=utf-8");
 		// resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();

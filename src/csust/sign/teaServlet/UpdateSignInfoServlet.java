@@ -11,39 +11,47 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import csust.sign.bean.Dao.Impl.AllowSignDaoImpl;
 
-public class UpdateSignInfoServlet extends HttpServlet{
+/**
+ * 上传签到信息
+ * 
+ * @author anLA7856
+ *
+ */
+public class UpdateSignInfoServlet extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private AllowSignDaoImpl asdi = new AllowSignDaoImpl();
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		doPost(req, resp);
-		
+
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		//注：传过来date值，
+
+		// 注：传过来date值，
 		String courseId = req.getParameter("courseId");
 		String signDate = req.getParameter("date");
 		String signTime = req.getParameter("date2");
-		
-		if(courseId == null || signDate == null || signTime == null){
+
+		if (courseId == null || signDate == null || signTime == null) {
 			return;
 		}
-		
-		
-		
-		int result = asdi.addAllowSignInfo(courseId, signDate+" "+signTime);
+
+		int result = asdi.addAllowSignInfo(courseId, signDate + " " + signTime);
 		resp.setContentType("text/html;charset=utf-8");
-		//resp.setCharacterEncoding("utf-8");
+		// resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
 		pw.write(JSONArray.fromObject(new Integer(result)).toString());
 		pw.flush();
 		pw.close();
-		
+
 	}
 }

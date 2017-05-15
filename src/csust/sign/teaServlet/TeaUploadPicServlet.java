@@ -18,11 +18,11 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  * 用于上传教师的头像来服务器，仅仅与学生的就一个文件夹名字不同。
- * @author U-anLA
+ * 
+ * @author anLA7856
  *
  */
-public class TeaUploadPicServlet extends HttpServlet{
-
+public class TeaUploadPicServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -41,8 +41,8 @@ public class TeaUploadPicServlet extends HttpServlet{
 		PrintWriter out = resp.getWriter();
 
 		req.setCharacterEncoding("UTF-8");
-		String uploadPath = req.getSession().getServletContext().getRealPath(
-				"/teaPic");
+		String uploadPath = req.getSession().getServletContext()
+				.getRealPath("/teaPic");
 		boolean isMultipart = ServletFileUpload.isMultipartContent(req);
 		if (isMultipart == true) {
 			try {
@@ -62,7 +62,7 @@ public class TeaUploadPicServlet extends HttpServlet{
 				}
 				out.print("upload succeed");
 			} catch (Exception e) {
-				//e.printStackTrace();
+				// e.printStackTrace();
 			}
 		} else {
 			out.println("the enctype must be multipart/form-data");

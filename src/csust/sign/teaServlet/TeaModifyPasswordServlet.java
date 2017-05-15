@@ -13,10 +13,11 @@ import csust.sign.bean.Dao.Impl.TeacherDaoImpl;
 
 /**
  * 用于教师端来修改自己用户密码的servlet
- * @author U-ANLA
+ * 
+ * @author anLA7856
  *
  */
-public class TeaModifyPasswordServlet extends HttpServlet{
+public class TeaModifyPasswordServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -28,20 +29,20 @@ public class TeaModifyPasswordServlet extends HttpServlet{
 			throws ServletException, IOException {
 		String teacher_id = req.getParameter("teacher_id");
 		String myNew = req.getParameter("new");
-		
-		if(teacher_id == null || myNew == null){
+
+		if (teacher_id == null || myNew == null) {
 			return;
 		}
-		
-		
-		int result = new TeacherDaoImpl().modifyTeacherPassword(teacher_id, myNew);
-		
+
+		int result = new TeacherDaoImpl().modifyTeacherPassword(teacher_id,
+				myNew);
+
 		resp.setContentType("text/html;charset=utf-8");
-		//resp.setCharacterEncoding("utf-8");
+		// resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
 		pw.write(JSONArray.fromObject(new Integer(result)).toString());
 		pw.flush();
 		pw.close();
 	}
-	
+
 }

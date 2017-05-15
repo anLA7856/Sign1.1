@@ -10,10 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
-import csust.sign.bean.Course;
 import csust.sign.bean.SignInfo;
 import csust.sign.bean.Dao.Impl.TeacherDaoImpl;
 
+/**
+ * 教师端获得正在进行签到的签到信息
+ * 
+ * @author anLA7856
+ *
+ */
 public class TeaGetMySigningInfoServlet extends HttpServlet {
 
 	/**
@@ -35,10 +40,10 @@ public class TeaGetMySigningInfoServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");
 		// resp.setCharacterEncoding("utf-8");
 		PrintWriter pw = resp.getWriter();
-		if(req.getParameter("student_id") == null){
+		if (req.getParameter("student_id") == null) {
 			return;
 		}
-		if(req.getParameter("student_id").equals("")){
+		if (req.getParameter("student_id").equals("")) {
 			pw.write("[]");
 			pw.flush();
 			pw.close();
@@ -51,8 +56,7 @@ public class TeaGetMySigningInfoServlet extends HttpServlet {
 
 		// 写出到页面
 		List<SignInfo> list = tdi.getTeacherSignInfoByTeacherID(teacher_id,
-				startCount,count);
-		
+				startCount, count);
 
 		pw.write(JSONArray.fromObject(list).toString());
 		pw.flush();

@@ -11,6 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import csust.sign.bean.Dao.Impl.AllowSignDaoImpl;
 
+/**
+ * 关闭某一次签到
+ * 
+ * @author anLA7856
+ *
+ */
 public class CloseSignServlet extends HttpServlet {
 
 	/**
@@ -31,11 +37,10 @@ public class CloseSignServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String allow_sign_id = req.getParameter("allow_sign_id");
 
-		if(allow_sign_id == null){
+		if (allow_sign_id == null) {
 			return;
 		}
-		
-		
+
 		int result = asdi.closeSignInfo(allow_sign_id);
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();

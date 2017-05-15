@@ -12,7 +12,13 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import csust.sign.bean.Dao.Impl.CourseDaoImpl;
 
-public class UploadNewCourseServlet extends HttpServlet{
+/**
+ * 添加新课程信息
+ * 
+ * @author anLA7856
+ *
+ */
+public class UploadNewCourseServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -20,28 +26,27 @@ public class UploadNewCourseServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	private CourseDaoImpl cdi = new CourseDaoImpl();
-	
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		doPost(req, resp);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		String teacher_id=null;
+		String teacher_id = null;
 		String course_name = null;
 		String description = null;
-		
+
 		String value = req.getParameter("value");
-		
-		if(value == null){
+
+		if (value == null) {
 			return;
 		}
-		
-		if(!value.equalsIgnoreCase("")){
+
+		if (!value.equalsIgnoreCase("")) {
 			JSONObject jsonObject1 = JSONObject.fromObject(value);
 			teacher_id = jsonObject1.get("teacher_id").toString().trim();
 			course_name = jsonObject1.get("course_name").toString().trim();
@@ -49,17 +54,15 @@ public class UploadNewCourseServlet extends HttpServlet{
 		}
 
 		String name = new String(course_name.getBytes("ISO-8859-1"), "utf-8");
-		String des = new String(description.getBytes("ISO-8859-1"), "utf-8"); 
-		
-		
+		String des = new String(description.getBytes("ISO-8859-1"), "utf-8");
+
 		int result = cdi.addCourse(teacher_id, name, des);
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();
-		
+
 		pw.write(JSONArray.fromObject(result).toString());
 		pw.flush();
 		pw.close();
-		
-		
+
 	}
 }

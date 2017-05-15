@@ -11,10 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 import csust.sign.bean.CourseStudentListInfo;
-import csust.sign.bean.StudentInfo;
 import csust.sign.bean.Dao.Impl.StudentCourseDaoImpl;
 import csust.sign.utils.ParameterUtil;
 
+/**
+ * 得到课程学生了列表
+ * 
+ * @author anLA7856
+ *
+ */
 public class GetCourseStudentListServlet extends HttpServlet{
 
 	/**

@@ -14,10 +14,11 @@ import csust.sign.utils.ParameterUtil;
 
 /**
  * 这个类重复了，开始没设计好。
- * @author U-ANLA
+ * 
+ * @author anLA7856
  *
  */
-public class TeaChatMessageAddServlet extends HttpServlet{
+public class TeaChatMessageAddServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -41,16 +42,16 @@ public class TeaChatMessageAddServlet extends HttpServlet{
 		String studentId = req.getParameter("studentId");
 		String teacherId = req.getParameter("teacherId");
 		String message = req.getParameter("message");
-		
-		if(!ParameterUtil.parameterTest(studentId,teacherId,message)){
+
+		if (!ParameterUtil.parameterTest(studentId, teacherId, message)) {
 			return;
 		}
 		ChatMessage cm = new ChatMessage();
 		cm.setSenderId(Integer.parseInt(teacherId.toString()));
 		cm.setReceiveId(Integer.parseInt(studentId.toString()));
 		cm.setMessage(message.toString());
-		//保存。
-		
+		// 保存。
+
 		int validate = cmdi.addNewMessage(cm);
 		pw.print(validate);
 		pw.flush();

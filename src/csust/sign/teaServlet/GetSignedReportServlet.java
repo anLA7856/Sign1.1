@@ -8,18 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
-import csust.sign.bean.Dao.Impl.TeacherDaoImpl;
 import csust.sign.utils.HSSFWorkbookUtils;
 
 /**
  * 用于让服务器生成excel报表的servlet，待生成好以后，即可下载。
  * 
- * @author U-ANLA
+ * @author anLA7856
  *
  */
 public class GetSignedReportServlet extends HttpServlet {
-
 
 	/**
 	 * 
@@ -42,7 +39,7 @@ public class GetSignedReportServlet extends HttpServlet {
 		if (fileName == null) {
 			pw.write("[0]");
 		} else {
-			pw.write(fileName+","+courseName);
+			pw.write(fileName + "," + courseName);
 		}
 
 		pw.flush();
