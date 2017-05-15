@@ -1,22 +1,25 @@
 package csust.sign.utils;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+/**
+ * 数据库连接工程
+ * 
+ * @author anLA7856
+ *
+ */
 public class ConnectFactory {
 
 	private static InitialContext ctx = null;
 	private static Context envContext = null;
 	private static DataSource ds = null;
-
-
-	
-	
-
-
 
 	/**
 	 * 获取数据库连接
@@ -26,27 +29,26 @@ public class ConnectFactory {
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
-			if(ctx == null){
+			if (ctx == null) {
 				ctx = new InitialContext();
 			}
-			if(envContext == null){
+			if (envContext == null) {
 				envContext = (Context) ctx.lookup("java:/comp/env");
 			}
-			//ctx = new InitialContext();
-			if(ds == null){
+			// ctx = new InitialContext();
+			if (ds == null) {
 				ds = (DataSource) envContext.lookup("jdbc/sign");
 			}
 			conn = ds.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-	
+
 		return conn;
 	}
 
 	/**
-	 * 关闭数据库连接，仍然血药关闭连接！，相当于放回数据库连接池，本线程不占用了。
+	 * 关闭数据库连接，仍然需要关闭连接！，相当于放回数据库连接池，本线程不占用了。
 	 * 
 	 * @param pstam
 	 * @param rs

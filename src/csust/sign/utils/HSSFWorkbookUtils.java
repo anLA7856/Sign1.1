@@ -1,6 +1,5 @@
 package csust.sign.utils;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +18,12 @@ import csust.sign.bean.Dao.Impl.AllowSignDaoImpl;
 import csust.sign.bean.Dao.Impl.SignDaoImpl;
 import csust.sign.bean.Dao.Impl.StudentCourseDaoImpl;
 
+/**
+ * 用于生成报表的excel文件
+ * 
+ * @author anLA7856
+ *
+ */
 public class HSSFWorkbookUtils {
 
 	private String course_id;
@@ -35,8 +40,8 @@ public class HSSFWorkbookUtils {
 
 	// 每一个学生，每一列
 	private List<StudentReportInfo> listStudent;
-	
-	//用于存储签到数据
+
+	// 用于存储签到数据
 	private List<SignReportInfo> listContent;
 
 	// 定义一个数组，模拟表格
@@ -61,16 +66,17 @@ public class HSSFWorkbookUtils {
 	 * 用于生成除第一行外的其他行。
 	 */
 	private void createOtherRow() {
-		for(int i = 0;i < listStudent.size();i++){
-			//制造其他行
-			HSSFRow row = sheet.createRow(i+1);
-			//制造一行中的其他列
-			//先加个学生信息
+		for (int i = 0; i < listStudent.size(); i++) {
+			// 制造其他行
+			HSSFRow row = sheet.createRow(i + 1);
+			// 制造一行中的其他列
+			// 先加个学生信息
 			HSSFCell cell = row.createCell(0);
 			cell.setCellType(HSSFCell.CELL_TYPE_STRING);
-			cell.setCellValue(listStudent.get(i).getStudent_name()+"("+listStudent.get(i).getStudent_username()+")");
-			for(int j = 0;j < listHead.size();j++){
-				HSSFCell cellTemp = row.createCell(j+1);
+			cell.setCellValue(listStudent.get(i).getStudent_name() + "("
+					+ listStudent.get(i).getStudent_username() + ")");
+			for (int j = 0; j < listHead.size(); j++) {
+				HSSFCell cellTemp = row.createCell(j + 1);
 				cellTemp.setCellType(HSSFCell.CELL_TYPE_STRING);
 				cellTemp.setCellValue(report[i][j]);
 			}
@@ -97,62 +103,61 @@ public class HSSFWorkbookUtils {
 		cell.setCellType(HSSFCell.CELL_TYPE_STRING);
 		cell.setCellValue("学生姓名\\签到时间");
 		for (int i = 0; i < listHead.size(); i++) {
-			sheet.setColumnWidth(i+1, 6000);
-			HSSFCell cellTemp = row.createCell(i+1);
+			sheet.setColumnWidth(i + 1, 6000);
+			HSSFCell cellTemp = row.createCell(i + 1);
 			cellTemp.setCellType(HSSFCell.CELL_TYPE_STRING);
 			cellTemp.setCellValue(listHead.get(i).getSign_time());
 		}
 
 	}
-	
-	
+
 	/**
 	 * 用于初始化数组。将有值的填进去。
 	 */
-	private void initArray(){
-		//便利大的二维数组
-		for(int i = 0;i < listStudent.size();i++){
-			for(int j = 0;j < listHead.size();j++){
-				//遍历小的一维数组
+	private void initArray() {
+		// 便利大的二维数组
+		for (int i = 0; i < listStudent.size(); i++) {
+			for (int j = 0; j < listHead.size(); j++) {
+				// 遍历小的一维数组
 				report[i][j] = "缺课";
-				for(int k = 0;k < listContent.size();k++){
-					if(listContent.get(k).getAllow_sign_id() == listHead.get(j).getAllow_sign_id() && listContent.get(k).getStudent_id() == listStudent.get(i).getStudent_id()){
+				for (int k = 0; k < listContent.size(); k++) {
+					if (listContent.get(k).getAllow_sign_id() == listHead
+							.get(j).getAllow_sign_id()
+							&& listContent.get(k).getStudent_id() == listStudent
+									.get(i).getStudent_id()) {
 						report[i][j] = listContent.get(k).getSign_state();
 					}
 				}
-				
+
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * 用于在本地服务器中生成文件。
+	 * 
 	 * @return
 	 */
-	public String createFile(HttpServletRequest req){
-		
-		String filePath = req.getSession().getServletContext().getRealPath(
-				"/xls");
-//		File file = new File(filePath);
-		java.io.File file = new java.io.File(filePath,fileName);
+	public String createFile(HttpServletRequest req) {
+
+		String filePath = req.getSession().getServletContext()
+				.getRealPath("/xls");
+		// File file = new File(filePath);
+		java.io.File file = new java.io.File(filePath, fileName);
 		try {
-//			if(!file.exists()){
-//				file.createNewFile();
-//			}
+			// if(!file.exists()){
+			// file.createNewFile();
+			// }
 			FileOutputStream fos = new FileOutputStream(file);
 			workBook.write(fos);
 			fos.flush();
 			fos.close();
-			
+
 		} catch (IOException e1) {
 			e1.printStackTrace();
 			return null;
 		}
 		return fileName;
 	}
-	
-	
-	
 
 }
