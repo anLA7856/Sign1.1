@@ -4,7 +4,11 @@ import java.util.List;
 
 import csust.sign.bean.CourseStudentListInfo;
 import csust.sign.bean.StudentReportInfo;
-
+/**
+ * 
+ * @author anLA7856
+ *
+ */
 public interface StudentCourseDao {
 
 	/**

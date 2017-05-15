@@ -11,7 +11,7 @@ import csust.sign.bean.StudentSignRate;
 
 /**
  * 就是signname的dao
- * @author U-anLA
+ * @author anLA7856
  *
  */
 public interface SignDao {

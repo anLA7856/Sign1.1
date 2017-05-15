@@ -6,6 +6,11 @@ import csust.sign.bean.SignInfo;
 import csust.sign.bean.Teacher;
 import csust.sign.bean.TeacherListInfo;
 
+/**
+ * 
+ * @author U-ANLA
+ *
+ */
 public interface TeacherDao {
 	/**
 	 * 通过教师的用户名来获得密码
@@ -56,7 +61,12 @@ public interface TeacherDao {
 	 */
 	public List<TeacherListInfo> getTeaListByStudentId(String student_id,String start,String count);
 
-
+	/**
+	 * 更改教师密码
+	 * @param teacher_id
+	 * @param mynew
+	 * @return
+	 */
 	public int modifyTeacherPassword(String teacher_id,String mynew);
 	
 
