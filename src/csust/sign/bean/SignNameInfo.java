@@ -3,7 +3,7 @@ package csust.sign.bean;
 /**
  * 用于记录每一位学生某次签到记录,与Android端的对应
  * 
- * @author U-anLA
+ * @author anLA7856
  *
  */
 public class SignNameInfo {

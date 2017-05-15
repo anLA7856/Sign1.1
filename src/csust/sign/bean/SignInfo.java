@@ -1,12 +1,11 @@
 package csust.sign.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 /**
  * 与Android移动端的json格式的signinfo对应
  * 
- * @author U-anLA
+ * @author anLA7856
  *
  */
 public class SignInfo implements Serializable {
@@ -20,7 +19,7 @@ public class SignInfo implements Serializable {
 	private String sign_teacherName;
 	// 用于保存当前sign的教师的wifimac
 	private String teacher_wifimac;
-	//吧alowsignid传过去。
+	// 吧alowsignid传过去。
 	private String alow_sign_id;
 
 	public SignInfo() {

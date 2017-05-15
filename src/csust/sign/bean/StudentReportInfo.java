@@ -3,7 +3,7 @@ package csust.sign.bean;
 /**
  * 用于生成报表时候，学生的信息
  * 
- * @author U-ANLA
+ * @author anLA7856
  *
  */
 public class StudentReportInfo {

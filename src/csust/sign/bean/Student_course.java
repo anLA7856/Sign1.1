@@ -3,9 +3,9 @@ package csust.sign.bean;
 import java.io.Serializable;
 
 /**
- * 学生课程表，注意此处为了简单方便，所以就没有利用组合的方式
- * 传递引用表示一对多，而是直接用一个int的id，此处有缺陷，应该用integer
- * @author U-anLA
+ * 学生课程表，注意此处为了简单方便，所以就没有利用组合的方式 传递引用表示一对多，而是直接用一个int的id，此处有缺陷，应该用integer
+ * 
+ * @author anLA7856
  *
  */
 public class Student_course implements Serializable {

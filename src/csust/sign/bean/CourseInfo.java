@@ -2,6 +2,12 @@ package csust.sign.bean;
 
 import java.io.Serializable;
 
+/**
+ * 课程的封装类，与Android端相对应
+ * 
+ * @author anLA7856
+ *
+ */
 public class CourseInfo implements Serializable {
 	/**
 	 * 

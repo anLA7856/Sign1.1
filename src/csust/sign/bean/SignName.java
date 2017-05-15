@@ -2,9 +2,11 @@ package csust.sign.bean;
 
 import java.io.Serializable;
 import java.sql.Date;
+
 /**
- * 签到表，一个表一个记录
- * @author U-anLA
+ * 签到表，一个表一个记录，与数据库相对应的实体类
+ * 
+ * @author anLA7856
  *
  */
 public class SignName implements Serializable {

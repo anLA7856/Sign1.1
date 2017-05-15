@@ -1,5 +1,11 @@
 package csust.sign.bean;
 
+/**
+ * 允许签到的实体类 与Android端对应
+ * 
+ * @author anLA7856
+ *
+ */
 public class AllowSignInfo {
 	private int allow_sign_id;
 	private int course_id;

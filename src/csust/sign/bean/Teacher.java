@@ -4,10 +4,11 @@ import java.io.Serializable;
 
 /**
  * 对应于数据库的teacher表
- * @author U-anLA
+ * 
+ * @author anLA7856
  *
  */
-public class Teacher implements Serializable{
+public class Teacher implements Serializable {
 	/**
 	 * 
 	 */

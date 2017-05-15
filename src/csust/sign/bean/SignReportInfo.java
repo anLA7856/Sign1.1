@@ -1,9 +1,9 @@
 package csust.sign.bean;
 
 /**
- * 签到的报表信息bean
+ * 签到的报表信息bean，与Android端信息相对应
  * 
- * @author U-ANLA
+ * @author anLA7856
  *
  */
 public class SignReportInfo {

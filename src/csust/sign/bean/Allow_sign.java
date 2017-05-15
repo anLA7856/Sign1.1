@@ -2,8 +2,10 @@ package csust.sign.bean;
 
 import java.io.Serializable;
 import java.sql.Date;
+
 /**
- * 允许签到的sign表
+ * 允许签到的sign表, 与数据库对应
+ * 
  * @author anLA7856
  *
  */
@@ -69,7 +71,5 @@ public class Allow_sign implements Serializable {
 				+ teacher_id + ", sign_time=" + sign_time + ", target="
 				+ target + "]";
 	}
-	
-	
 
 }

@@ -3,9 +3,9 @@ package csust.sign.bean;
 import java.util.List;
 
 /**
- * 与Android教师端对应，
+ * 课程学生封装类，与Android教师端对应
  * 
- * @author U-ANLA
+ * @author anLA7856
  *
  */
 public class CourseStudentListInfo {
