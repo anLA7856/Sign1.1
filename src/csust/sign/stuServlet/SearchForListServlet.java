@@ -17,7 +17,7 @@ import csust.sign.bean.Dao.Impl.CourseDaoImpl;
 /**
  * 用于在学生端获取搜索的搜索课程结果。
  * 
- * @author U-anLA
+ * @author anLA7856
  *
  */
 public class SearchForListServlet extends HttpServlet {
@@ -39,16 +39,16 @@ public class SearchForListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		String courseNum = null, teacherNum = null,student_id=null;
-		
+		String courseNum = null, teacherNum = null, student_id = null;
+
 		student_id = req.getParameter("student_id");
 		String start = req.getParameter("start");
 		String count = req.getParameter("count");
-		
-		if(student_id == null || start == null || count == null){
+
+		if (student_id == null || start == null || count == null) {
 			return;
 		}
-		
+
 		List<SearchCourseInfo> list = new ArrayList<SearchCourseInfo>();
 
 		// 获得相应参数。
@@ -56,12 +56,14 @@ public class SearchForListServlet extends HttpServlet {
 				&& req.getParameter("courseNum") != null) {
 			// 通过courseNum来进行模糊搜索
 			courseNum = req.getParameter("courseNum");
-			list = cdi.getSearchCourseInfoByCourseId(courseNum,student_id,start,count);
+			list = cdi.getSearchCourseInfoByCourseId(courseNum, student_id,
+					start, count);
 		} else if (req.getParameter("teacherNum") != null
 				&& req.getParameter("courseNum") == null) {
 			// 通过teacherNum来进行精确搜索
 			teacherNum = req.getParameter("teacherNum");
-			list = cdi.getSearchCourseInfoByTeacherId(teacherNum,student_id,start,count);
+			list = cdi.getSearchCourseInfoByTeacherId(teacherNum, student_id,
+					start, count);
 		}
 
 		resp.setContentType("text/html;charset=utf-8");

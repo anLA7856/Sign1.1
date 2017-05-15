@@ -2,21 +2,22 @@ package csust.sign.stuServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import csust.sign.bean.ChatMessage;
-import csust.sign.bean.StudentInfo;
 import csust.sign.bean.Dao.Impl.ChatMessageDaoImpl;
-import csust.sign.bean.Dao.Impl.StudentDaoImpl;
 import csust.sign.utils.ParameterUtil;
 
+/**
+ * 增加学生信息
+ * 
+ * @author anLA7856
+ *
+ */
 public class StuChatMessageAddServlet extends HttpServlet {
 
 	/**
@@ -41,16 +42,16 @@ public class StuChatMessageAddServlet extends HttpServlet {
 		String studentId = req.getParameter("studentId");
 		String teacherId = req.getParameter("teacherId");
 		String message = req.getParameter("message");
-		
-		if(!ParameterUtil.parameterTest(studentId,teacherId,message)){
+
+		if (!ParameterUtil.parameterTest(studentId, teacherId, message)) {
 			return;
 		}
 		ChatMessage cm = new ChatMessage();
 		cm.setSenderId(Integer.parseInt(studentId.toString()));
 		cm.setReceiveId(Integer.parseInt(teacherId.toString()));
 		cm.setMessage(message.toString());
-		//保存。
-		
+		// 保存。
+
 		int validate = cmdi.addNewMessage(cm);
 		pw.print(validate);
 		pw.flush();

@@ -2,18 +2,22 @@ package csust.sign.stuServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import csust.sign.bean.StudentInfo;
 import csust.sign.bean.Dao.Impl.StudentDaoImpl;
 
+/**
+ * 增加学生
+ * 
+ * @author anLA7856
+ *
+ */
 public class StuAddServlet extends HttpServlet {
 
 	/**
@@ -36,8 +40,8 @@ public class StuAddServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();
 		String value = req.getParameter("value");
-		
-		if(value == null){
+
+		if (value == null) {
 			return;
 		}
 

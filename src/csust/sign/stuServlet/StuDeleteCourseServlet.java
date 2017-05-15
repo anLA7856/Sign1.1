@@ -11,7 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import csust.sign.bean.Dao.Impl.StudentCourseDaoImpl;
 
-public class StuDeleteCourseServlet extends HttpServlet{
+/**
+ * 学生删除一门课程
+ * 
+ * @author anLA7856
+ *
+ */
+public class StuDeleteCourseServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -23,20 +29,19 @@ public class StuDeleteCourseServlet extends HttpServlet{
 			throws ServletException, IOException {
 		String student_id = req.getParameter("student_id");
 		String course_id = req.getParameter("course_id");
-		
-		if(student_id == null || course_id == null){
+
+		if (student_id == null || course_id == null) {
 			return;
 		}
-		
-		
-		
-		int result = new StudentCourseDaoImpl().studentDeleteOneCourse(student_id, course_id);
+
+		int result = new StudentCourseDaoImpl().studentDeleteOneCourse(
+				student_id, course_id);
 		resp.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = resp.getWriter();
-		
+
 		pw.write(JSONArray.fromObject(result).toString());
 		pw.flush();
 		pw.close();
-		
+
 	}
 }

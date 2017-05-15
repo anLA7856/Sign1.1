@@ -16,6 +16,12 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+/**
+ * 学生注册时，上传照片
+ * 
+ * @author anLA7856
+ *
+ */
 public class StuUploadPicServlet extends HttpServlet {
 
 	/**
@@ -35,8 +41,8 @@ public class StuUploadPicServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 
 		req.setCharacterEncoding("UTF-8");
-		String uploadPath = req.getSession().getServletContext().getRealPath(
-				"/stuPic");
+		String uploadPath = req.getSession().getServletContext()
+				.getRealPath("/stuPic");
 		boolean isMultipart = ServletFileUpload.isMultipartContent(req);
 		if (isMultipart == true) {
 			try {
@@ -56,7 +62,7 @@ public class StuUploadPicServlet extends HttpServlet {
 				}
 				out.print("upload succeed");
 			} catch (Exception e) {
-				//e.printStackTrace();
+				// e.printStackTrace();
 			}
 		} else {
 			out.println("the enctype must be multipart/form-data");
