@@ -10,6 +10,11 @@ import csust.sign.bean.ChatMessage;
 import csust.sign.bean.Dao.ChatMessageDao;
 import csust.sign.utils.ConnectFactory;
 
+/**
+ * 
+ * @author anLA7856
+ *
+ */
 public class ChatMessageDaoImpl implements ChatMessageDao {
 
 	@Override
@@ -54,16 +59,16 @@ public class ChatMessageDaoImpl implements ChatMessageDao {
 			rs = pstam.executeQuery();
 			while (rs.next()) {
 				ChatMessage c = new ChatMessage();
-				c.setChatTime(rs.getDate("chat_time").getTime()+"");
+				c.setChatTime(rs.getDate("chat_time").getTime() + "");
 				c.setId(rs.getInt("id"));
 				c.setMessage(rs.getString("message"));
 				c.setNotRead(rs.getInt("not_read"));
 				c.setReceiveId(rs.getInt("receiver_id"));
 				c.setSenderId(rs.getInt("sender_id"));
-				if(rs.getInt("receiver_id") == receiveId){
-					c.setIsCome(1+"");
-				}else{
-					c.setIsCome(0+"");
+				if (rs.getInt("receiver_id") == receiveId) {
+					c.setIsCome(1 + "");
+				} else {
+					c.setIsCome(0 + "");
 				}
 				list.add(c);
 			}
@@ -90,17 +95,17 @@ public class ChatMessageDaoImpl implements ChatMessageDao {
 			rs = pstam.executeQuery();
 			while (rs.next()) {
 				ChatMessage c = new ChatMessage();
-				c.setChatTime(rs.getTimestamp("chat_time").getTime()+"");
+				c.setChatTime(rs.getTimestamp("chat_time").getTime() + "");
 
 				c.setId(rs.getInt("id"));
 				c.setMessage(rs.getString("message"));
 				c.setNotRead(rs.getInt("not_read"));
 				c.setReceiveId(rs.getInt("receiver_id"));
 				c.setSenderId(rs.getInt("sender_id"));
-				if(rs.getInt("receiver_id") == receiveId){
-					c.setIsCome(1+"");
-				}else{
-					c.setIsCome(0+"");
+				if (rs.getInt("receiver_id") == receiveId) {
+					c.setIsCome(1 + "");
+				} else {
+					c.setIsCome(0 + "");
 				}
 				list.add(c);
 			}
@@ -112,8 +117,6 @@ public class ChatMessageDaoImpl implements ChatMessageDao {
 		return list;
 	}
 
-	
-
 	@Override
 	public int modifyMessageState(int... id) {
 		PreparedStatement pstam = null;
@@ -121,9 +124,10 @@ public class ChatMessageDaoImpl implements ChatMessageDao {
 		Connection conn = null;
 		int result = 0;
 		// 先暂时用来测试
-		StringBuffer sql = new StringBuffer("UPDATE chat_message SET not_read=0 WHERE id = "+id[0]);
-		for(int i = 1;i < id.length;i++){
-			sql.append(" OR id="+id[i]);
+		StringBuffer sql = new StringBuffer(
+				"UPDATE chat_message SET not_read=0 WHERE id = " + id[0]);
+		for (int i = 1; i < id.length; i++) {
+			sql.append(" OR id=" + id[i]);
 		}
 		sql.append(";");
 		try {

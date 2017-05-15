@@ -13,6 +13,11 @@ import csust.sign.bean.StudentReportInfo;
 import csust.sign.bean.Dao.StudentCourseDao;
 import csust.sign.utils.ConnectFactory;
 
+/**
+ * 
+ * @author anLA7856
+ *
+ */
 public class StudentCourseDaoImpl implements StudentCourseDao {
 
 	@Override
@@ -137,7 +142,8 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 	}
 
 	@Override
-	public List<CourseStudentListInfo> getAllStudentsListByTeacherId(String teacherId) {
+	public List<CourseStudentListInfo> getAllStudentsListByTeacherId(
+			String teacherId) {
 		PreparedStatement pstam = null;
 		ResultSet rs = null;
 		Connection conn = null;
@@ -147,17 +153,18 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 				+ " AND student_course.`course_id`=course.`course_id`"
 				+ " AND course.`course_id`=?;";
 		List<CourseStudentListInfo> list = new ArrayList<CourseStudentListInfo>();
-		List<Course> listCourse= new CourseDaoImpl().getCoursesByTeacherNum(teacherId, 1+"", 0, 1+"");
+		List<Course> listCourse = new CourseDaoImpl().getCoursesByTeacherNum(
+				teacherId, 1 + "", 0, 1 + "");
 		List<StudentInfo> listStudent = null;
 		// 先暂时用来测试,这段代码即将写的很烂。
 		conn = ConnectFactory.getConnection();
-		
-		for(int i = 0;i < listCourse.size();i++){
+
+		for (int i = 0; i < listCourse.size(); i++) {
 			CourseStudentListInfo csl = new CourseStudentListInfo();
 			csl.setCourse(listCourse.get(i));
 			try {
 				pstam = conn.prepareStatement(sql);
-				pstam.setInt(1,listCourse.get(i).getCourse_id());
+				pstam.setInt(1, listCourse.get(i).getCourse_id());
 				rs = pstam.executeQuery();
 				listStudent = new ArrayList<StudentInfo>();
 				while (rs.next()) {
@@ -166,7 +173,8 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 					student.setStudent_name(rs.getString("student_name"));
 					student.setStudent_num(rs.getString("student_num"));
 					student.setStudent_sex(rs.getString("student_sex"));
-					student.setStudent_username(rs.getString("student_username"));
+					student.setStudent_username(rs
+							.getString("student_username"));
 					listStudent.add(student);
 				}
 			} catch (Exception e) {
@@ -177,7 +185,7 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
 			csl.setList(listStudent);
 			list.add(csl);
 		}
-		
+
 		ConnectFactory.close(pstam, rs, conn);
 		return list;
 	}

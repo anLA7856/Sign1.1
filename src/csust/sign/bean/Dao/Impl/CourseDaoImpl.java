@@ -12,6 +12,11 @@ import csust.sign.bean.SearchCourseInfo;
 import csust.sign.bean.Dao.CourseDao;
 import csust.sign.utils.ConnectFactory;
 
+/**
+ * 
+ * @author anLA7856
+ *
+ */
 public class CourseDaoImpl implements CourseDao{
 
 
