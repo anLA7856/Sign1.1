@@ -1,404 +1,407 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
 
-    <!-- 用于引用数据源 -->
-    <resource-ref>
-        <description>DB Connection</description>
-        <res-ref-name>jdbc/sign</res-ref-name>
-        <res-type>javax.sql.DataSource</res-type>
-        <res-auth>Container</res-auth>
-    </resource-ref>
-    <!-- 用于获得学生所有课程的servlet -->
+	<!-- 用于引用数据源 -->
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/sign</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	<!-- 用于获得学生所有课程的servlet -->
 
-    <servlet>
-        <servlet-name>getStuCourse</servlet-name>
-        <servlet-class>csust.sign.stuServlet.GetStuCourseServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getStuCourse</servlet-name>
-        <url-pattern>/getStuCourse</url-pattern>
-    </servlet-mapping>
-    <!-- 用于获得学生所有未签到，但可以签到的课程的servlet -->
-    <servlet>
-        <servlet-name>getNotSignInfoServlet</servlet-name>
-        <servlet-class>csust.sign.stuServlet.GetNotSignInfoServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getNotSignInfoServlet</servlet-name>
-        <url-pattern>/getNotSignInfo</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于学生登录的servlet -->
- 	<servlet>
- 	    <servlet-name>stuLoginServlet</servlet-name>
- 	    <servlet-class>csust.sign.stuServlet.StuLoginServlet</servlet-class>
- 	</servlet>
- 	<servlet-mapping>
- 	    <servlet-name>stuLoginServlet</servlet-name>
- 	    <url-pattern>/stuLogin</url-pattern>
- 	</servlet-mapping>
- 
- 	<!-- 用于新建学生信息的servlet -->
- 	<servlet>
- 	    <servlet-name>stuAddServlet</servlet-name>
- 	    <servlet-class>csust.sign.stuServlet.StuAddServlet</servlet-class>
- 	</servlet>
- 	<servlet-mapping>
- 	    <servlet-name>stuAddServlet</servlet-name>
- 	    <url-pattern>/stuAdd</url-pattern>
- 	</servlet-mapping>
- 	
- 	<!-- 用于学生上传本人头像的servlet -->
- 	<servlet>
- 	    <servlet-name>stuUploadPicServlet</servlet-name>
- 	    <servlet-class>csust.sign.stuServlet.StuUploadPicServlet</servlet-class>
- 	</servlet>
- 	<servlet-mapping>
- 	    <servlet-name>stuUploadPicServlet</servlet-name>
- 	    <url-pattern>/stuUploadPic</url-pattern>
- 	</servlet-mapping>
- 	
- 	<!-- 用于学生上传签到成功结果的servlet -->
- 	<servlet>
- 	    <servlet-name>uploadSignInfoServlet</servlet-name>
- 	    <servlet-class>csust.sign.stuServlet.UploadSignInfoServlet</servlet-class>
- 	</servlet>
- 	<servlet-mapping>
- 	    <servlet-name>uploadSignInfoServlet</servlet-name>
- 	    <url-pattern>/uploadSignInfo</url-pattern>
- 	</servlet-mapping>
- 	
- 	<!-- 用于鉴定本门课是否已经被某位学生签到了 -->
- 	<servlet>
- 	    <servlet-name>vertifyIfCanSignServlet</servlet-name>
- 	    <servlet-class>csust.sign.stuServlet.VertifyIfCanSignServlet</servlet-class>
- 	</servlet>
- 	<servlet-mapping>
- 	    <servlet-name>vertifyIfCanSignServlet</servlet-name>
- 	    <url-pattern>/vertifyIfCanSign</url-pattern>
- 	</servlet-mapping>
- 	
- 	<!-- 用于学生端来搜索，获得搜索结果的课程 -->
- 	<servlet>
- 	    <servlet-name>searchForListServlet</servlet-name>
- 	    <servlet-class>csust.sign.stuServlet.SearchForListServlet</servlet-class>
- 	</servlet>
- 	<servlet-mapping>
- 	    <servlet-name>searchForListServlet</servlet-name>
- 	    <url-pattern>/searchForList</url-pattern>
- 	</servlet-mapping>
- 	
- 	<!-- 用于学生添加教师课程的servlet -->
- 	<servlet>
- 	    <servlet-name>addNewCourseServlet</servlet-name>
- 	    <servlet-class>csust.sign.stuServlet.AddNewCourseServlet</servlet-class>
- 	</servlet>
- 	<servlet-mapping>
- 	    <servlet-name>addNewCourseServlet</servlet-name>
- 	    <url-pattern>/addNewCourse</url-pattern>
- 	</servlet-mapping>
- 	
- 	<!-- 用于学生获得某一位学生某门课的综合到课率，也就是总到课率 -->
- 	<servlet>
- 	    <servlet-name>getCourseTotalSignRateServlet</servlet-name>
- 	    <servlet-class>csust.sign.stuServlet.GetCourseTotalSignRateServlet</servlet-class>
- 	</servlet>
- 	<servlet-mapping>
- 	    <servlet-name>getCourseTotalSignRateServlet</servlet-name>
- 	    <url-pattern>/getCourseTotalSignRate</url-pattern>
- 	</servlet-mapping>
- 	
- 	<!-- 用于获得某一位学生某一门课程的所有签到列表 -->
- 	<servlet>
- 	    <servlet-name>getSignInfoListOfCourseServlet</servlet-name>
- 	    <servlet-class>csust.sign.stuServlet.GetSignInfoListOfCourseServlet</servlet-class>
- 	</servlet>
- 	<servlet-mapping>
- 	    <servlet-name>getSignInfoListOfCourseServlet</servlet-name>
- 	    <url-pattern>/getSignInfoListOfCourse</url-pattern>
- 	</servlet-mapping>
- 	
- 	<!-- 用于某位学生获得与之对应的所有教师信息。 -->
- 	<servlet>
- 	    <servlet-name>getTeacherListServlet</servlet-name>
- 	    <servlet-class>csust.sign.stuServlet.GetTeacherListServlet</servlet-class>
- 	</servlet>
- 	<servlet-mapping>
- 	    <servlet-name>getTeacherListServlet</servlet-name>
- 	    <url-pattern>/getTeacherList</url-pattern>
- 	</servlet-mapping>
- 	
- 	<!-- 用于更改某位学生用户的密码 -->
- 	<servlet>
- 	    <servlet-name>stuModifyPasswordServlet</servlet-name>
- 	    <servlet-class>csust.sign.stuServlet.StuModifyPasswordServlet</servlet-class>
- 	</servlet>
- 	<servlet-mapping>
- 	    <servlet-name>stuModifyPasswordServlet</servlet-name>
- 	    <url-pattern>/stuModifyPassword</url-pattern>
- 	</servlet-mapping>
- 	
- 	<!-- 用于学生端删除某一门课程 -->
 	<servlet>
-	    <servlet-name>stuDeleteCourse</servlet-name>
-	    <servlet-class>csust.sign.stuServlet.StuDeleteCourseServlet</servlet-class>
+		<servlet-name>getStuCourse</servlet-name>
+		<servlet-class>csust.sign.stuServlet.GetStuCourseServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>stuDeleteCourse</servlet-name>
-	    <url-pattern>/stuDeleteCourse</url-pattern>
+		<servlet-name>getStuCourse</servlet-name>
+		<url-pattern>/getStuCourse</url-pattern>
+	</servlet-mapping>
+	<!-- 用于获得学生所有未签到，但可以签到的课程的servlet -->
+	<servlet>
+		<servlet-name>getNotSignInfoServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.GetNotSignInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getNotSignInfoServlet</servlet-name>
+		<url-pattern>/getNotSignInfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于学生登录的servlet -->
+	<servlet>
+		<servlet-name>stuLoginServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.StuLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>stuLoginServlet</servlet-name>
+		<url-pattern>/stuLogin</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于新建学生信息的servlet -->
+	<servlet>
+		<servlet-name>stuAddServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.StuAddServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>stuAddServlet</servlet-name>
+		<url-pattern>/stuAdd</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于学生上传本人头像的servlet -->
+	<servlet>
+		<servlet-name>stuUploadPicServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.StuUploadPicServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>stuUploadPicServlet</servlet-name>
+		<url-pattern>/stuUploadPic</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于学生上传签到成功结果的servlet -->
+	<servlet>
+		<servlet-name>uploadSignInfoServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.UploadSignInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>uploadSignInfoServlet</servlet-name>
+		<url-pattern>/uploadSignInfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于鉴定本门课是否已经被某位学生签到了 -->
+	<servlet>
+		<servlet-name>vertifyIfCanSignServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.VertifyIfCanSignServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>vertifyIfCanSignServlet</servlet-name>
+		<url-pattern>/vertifyIfCanSign</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于学生端来搜索，获得搜索结果的课程 -->
+	<servlet>
+		<servlet-name>searchForListServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.SearchForListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchForListServlet</servlet-name>
+		<url-pattern>/searchForList</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于学生添加教师课程的servlet -->
+	<servlet>
+		<servlet-name>addNewCourseServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.AddNewCourseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addNewCourseServlet</servlet-name>
+		<url-pattern>/addNewCourse</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于学生获得某一位学生某门课的综合到课率，也就是总到课率 -->
+	<servlet>
+		<servlet-name>getCourseTotalSignRateServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.GetCourseTotalSignRateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getCourseTotalSignRateServlet</servlet-name>
+		<url-pattern>/getCourseTotalSignRate</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于获得某一位学生某一门课程的所有签到列表 -->
+	<servlet>
+		<servlet-name>getSignInfoListOfCourseServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.GetSignInfoListOfCourseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getSignInfoListOfCourseServlet</servlet-name>
+		<url-pattern>/getSignInfoListOfCourse</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于某位学生获得与之对应的所有教师信息。 -->
+	<servlet>
+		<servlet-name>getTeacherListServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.GetTeacherListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getTeacherListServlet</servlet-name>
+		<url-pattern>/getTeacherList</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于更改某位学生用户的密码 -->
+	<servlet>
+		<servlet-name>stuModifyPasswordServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.StuModifyPasswordServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>stuModifyPasswordServlet</servlet-name>
+		<url-pattern>/stuModifyPassword</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于学生端删除某一门课程 -->
+	<servlet>
+		<servlet-name>stuDeleteCourse</servlet-name>
+		<servlet-class>csust.sign.stuServlet.StuDeleteCourseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>stuDeleteCourse</servlet-name>
+		<url-pattern>/stuDeleteCourse</url-pattern>
 	</servlet-mapping>
 	<!-- 用于学生端上传一条聊天消息 -->
- 	<servlet>
-	    <servlet-name>stuChatMessageAddServlet</servlet-name>
-	    <servlet-class>csust.sign.stuServlet.StuChatMessageAddServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	    <servlet-name>stuChatMessageAddServlet</servlet-name>
-	    <url-pattern>/stuChatMessageAdd</url-pattern>
-	</servlet-mapping>
-	
-	<!-- 用于学生端获得所有数据库中保存的聊天消息 -->
- 	<servlet>
-	    <servlet-name>stuGetAllChatMessageServlet</servlet-name>
-	    <servlet-class>csust.sign.stuServlet.StuGetAllChatMessageServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	    <servlet-name>stuGetAllChatMessageServlet</servlet-name>
-	    <url-pattern>/stuGetAllChatMessage</url-pattern>
-	</servlet-mapping>
- 	<!-- 用于学生端获得所有数据库中新的聊天消息 -->
- 	<servlet>
-	    <servlet-name>stuGetNewChatMessageServlet</servlet-name>
-	    <servlet-class>csust.sign.stuServlet.StuGetNewChatMessageServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	    <servlet-name>stuGetNewChatMessageServlet</servlet-name>
-	    <url-pattern>/stuGetNewChatMessage</url-pattern>
-	</servlet-mapping>
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	<!-- 用于获得当前教师正在签到的课程 -->
- 	<servlet>
- 	    <servlet-name>teaGetMySigningInfoServlet</servlet-name>
- 	    <servlet-class>csust.sign.teaServlet.TeaGetMySigningInfoServlet</servlet-class>
- 	</servlet>
-    <servlet-mapping>
-        <servlet-name>teaGetMySigningInfoServlet</servlet-name>
-        <url-pattern>/teaGetMySigningInfo</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于教师端登录 -->
-    <servlet>
-        <servlet-name>teaLoginServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.TeaLoginServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>teaLoginServlet</servlet-name>
-        <url-pattern>/teaLogin</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于获得教师所教授的所有的课程列表 -->
-    <servlet>
-        <servlet-name>getTeaCourseServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.GetTeaCourseServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getTeaCourseServlet</servlet-name>
-        <url-pattern>/getTeaCourse</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于上传教师的signinfo -->
-    <servlet>
-        <servlet-name>updateSignInfo</servlet-name>
-        <servlet-class>csust.sign.teaServlet.UpdateSignInfoServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>updateSignInfo</servlet-name>
-        <url-pattern>/updateSignInfo</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于添加课程用 -->
-    
-    <servlet>
-        <servlet-name>uploadNewCourseServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.UploadNewCourseServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>uploadNewCourseServlet</servlet-name>
-        <url-pattern>/uploadNewCourse</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于教师端删除一门课程 -->
-    <servlet>
-        <servlet-name>teaDeleteCourseServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.TeaDeleteCourse</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>teaDeleteCourseServlet</servlet-name>
-        <url-pattern>/teaDeleteCourse</url-pattern>
-    </servlet-mapping>
-    
-    
-    <!-- 用于教师关闭一门签到记录 -->
-    <servlet>
-        <servlet-name>closeSignServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.CloseSignServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>closeSignServlet</servlet-name>
-        <url-pattern>/closeSign</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于教师获得某一门课每个人的实时签到情况 -->
-    <servlet>
-        <servlet-name>getSignStudentInfoServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.GetSignStudentInfoServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getSignStudentInfoServlet</servlet-name>
-        <url-pattern>/getSignStudentInfo</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于教师获得某一门课的实时签到数目，已签到和未签到 -->
-    <servlet>
-        <servlet-name>getSignCountServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.GetSignCountServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getSignCountServlet</servlet-name>
-        <url-pattern>/getSignCount</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于更改某一位同学某一次的签到记录状态 -->
 	<servlet>
-	    <servlet-name>changeSignStateServlet</servlet-name>
-	    <servlet-class>csust.sign.teaServlet.ChangeSignStateServlet</servlet-class>
-	</servlet>    
+		<servlet-name>stuChatMessageAddServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.StuChatMessageAddServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	    <servlet-name>changeSignStateServlet</servlet-name>
+		<servlet-name>stuChatMessageAddServlet</servlet-name>
+		<url-pattern>/stuChatMessageAdd</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于学生端获得所有数据库中保存的聊天消息 -->
+	<servlet>
+		<servlet-name>stuGetAllChatMessageServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.StuGetAllChatMessageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>stuGetAllChatMessageServlet</servlet-name>
+		<url-pattern>/stuGetAllChatMessage</url-pattern>
+	</servlet-mapping>
+	<!-- 用于学生端获得所有数据库中新的聊天消息 -->
+	<servlet>
+		<servlet-name>stuGetNewChatMessageServlet</servlet-name>
+		<servlet-class>csust.sign.stuServlet.StuGetNewChatMessageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>stuGetNewChatMessageServlet</servlet-name>
+		<url-pattern>/stuGetNewChatMessage</url-pattern>
+	</servlet-mapping>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- 用于获得当前教师正在签到的课程 -->
+	<servlet>
+		<servlet-name>teaGetMySigningInfoServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.TeaGetMySigningInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>teaGetMySigningInfoServlet</servlet-name>
+		<url-pattern>/teaGetMySigningInfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于教师端登录 -->
+	<servlet>
+		<servlet-name>teaLoginServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.TeaLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>teaLoginServlet</servlet-name>
+		<url-pattern>/teaLogin</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于获得教师所教授的所有的课程列表 -->
+	<servlet>
+		<servlet-name>getTeaCourseServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.GetTeaCourseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getTeaCourseServlet</servlet-name>
+		<url-pattern>/getTeaCourse</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于上传教师的signinfo -->
+	<servlet>
+		<servlet-name>updateSignInfo</servlet-name>
+		<servlet-class>csust.sign.teaServlet.UpdateSignInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateSignInfo</servlet-name>
+		<url-pattern>/updateSignInfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于添加课程用 -->
+
+	<servlet>
+		<servlet-name>uploadNewCourseServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.UploadNewCourseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>uploadNewCourseServlet</servlet-name>
+		<url-pattern>/uploadNewCourse</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于教师端删除一门课程 -->
+	<servlet>
+		<servlet-name>teaDeleteCourseServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.TeaDeleteCourse</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>teaDeleteCourseServlet</servlet-name>
+		<url-pattern>/teaDeleteCourse</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 用于教师关闭一门签到记录 -->
+	<servlet>
+		<servlet-name>closeSignServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.CloseSignServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>closeSignServlet</servlet-name>
+		<url-pattern>/closeSign</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于教师获得某一门课每个人的实时签到情况 -->
+	<servlet>
+		<servlet-name>getSignStudentInfoServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.GetSignStudentInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getSignStudentInfoServlet</servlet-name>
+		<url-pattern>/getSignStudentInfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于教师获得某一门课的实时签到数目，已签到和未签到 -->
+	<servlet>
+		<servlet-name>getSignCountServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.GetSignCountServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getSignCountServlet</servlet-name>
+		<url-pattern>/getSignCount</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于更改某一位同学某一次的签到记录状态 -->
+	<servlet>
+		<servlet-name>changeSignStateServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.ChangeSignStateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>changeSignStateServlet</servlet-name>
 		<url-pattern>/changeSignState</url-pattern>
 	</servlet-mapping>
-    
-    <!-- 用于某一位老师获得某一门课程的签到率 -->
-    <servlet>
-        <servlet-name>getCourseSignInfoCountServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.GetCourseSignInfoCountServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getCourseSignInfoCountServlet</servlet-name>
-        <url-pattern>/getCourseSignInfoCount</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于获得某一门课程的所有签到的list -->
-    <servlet>
-        <servlet-name>getAllSignListOfCourseServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.GetAllSignListOfCourseServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getAllSignListOfCourseServlet</servlet-name>
-        <url-pattern>/getAllSignListOfCourse</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于获得某一门课的列表，以课程为单位，展示出每一位学生的签到几率 -->
-    <servlet>
-        <servlet-name>getStudentListCourseRateServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.GetStudentListCourseRateServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getStudentListCourseRateServlet</servlet-name>
-        <url-pattern>/getStudentListCourseRate</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于教师端来注册用户名密码 -->
-    <servlet>
-        <servlet-name>teaAddServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.TeaAddServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>teaAddServlet</servlet-name>
-        <url-pattern>/teaAdd</url-pattern>
-    </servlet-mapping>
-    
-    
-    <!-- 用于教师端来上传自己的头像图片 -->
-    <servlet>
-        <servlet-name>teaUploadPicServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.TeaUploadPicServlet</servlet-class>
-    </servlet>
-    
-    <servlet-mapping>
-        <servlet-name>teaUploadPicServlet</servlet-name>
-        <url-pattern>/teaUploadPic</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于教师端修改自己的密码 -->
-    <servlet>
-        <servlet-name>teaModifyPasswordServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.TeaModifyPasswordServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>teaModifyPasswordServlet</servlet-name>
-        <url-pattern>/teaModifyPassword</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于获得本门课未签到的学生信息 -->
-    <servlet>
-        <servlet-name>getUnsignedStudentsServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.GetUnsignedStudentsServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getUnsignedStudentsServlet</servlet-name>
-        <url-pattern>/getUnsignedStudents</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于添加新的学生信息 -->
-    <servlet>
-        <servlet-name>addNewStudentSignStateServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.AddNewStudentSignStateServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>addNewStudentSignStateServlet</servlet-name>
-        <url-pattern>/addNewStudentSignState</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于让服务器生成相关报表并且下载。 -->
-    <servlet>
-        <servlet-name>getSignedReportServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.GetSignedReportServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getSignedReportServlet</servlet-name>
-        <url-pattern>/getSignedReport</url-pattern>
-    </servlet-mapping>
-    
-    <!-- 用于教师端获得某一门课的所有学生列表。 -->
-    <servlet>
-        <servlet-name>getCourseStudentListServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.GetCourseStudentListServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>getCourseStudentListServlet</servlet-name>
-        <url-pattern>/getCourseStudentList</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>teaChatMessageAddServlet</servlet-name>
-        <servlet-class>csust.sign.teaServlet.TeaChatMessageAddServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>teaChatMessageAddServlet</servlet-name>
-        <url-pattern>/teaChatMessageAdd</url-pattern>
-    </servlet-mapping>
-    
+
+	<!-- 用于某一位老师获得某一门课程的签到率 -->
+	<servlet>
+		<servlet-name>getCourseSignInfoCountServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.GetCourseSignInfoCountServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getCourseSignInfoCountServlet</servlet-name>
+		<url-pattern>/getCourseSignInfoCount</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于获得某一门课程的所有签到的list -->
+	<servlet>
+		<servlet-name>getAllSignListOfCourseServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.GetAllSignListOfCourseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getAllSignListOfCourseServlet</servlet-name>
+		<url-pattern>/getAllSignListOfCourse</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于获得某一门课的列表，以课程为单位，展示出每一位学生的签到几率 -->
+	<servlet>
+		<servlet-name>getStudentListCourseRateServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.GetStudentListCourseRateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getStudentListCourseRateServlet</servlet-name>
+		<url-pattern>/getStudentListCourseRate</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于教师端来注册用户名密码 -->
+	<servlet>
+		<servlet-name>teaAddServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.TeaAddServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>teaAddServlet</servlet-name>
+		<url-pattern>/teaAdd</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 用于教师端来上传自己的头像图片 -->
+	<servlet>
+		<servlet-name>teaUploadPicServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.TeaUploadPicServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>teaUploadPicServlet</servlet-name>
+		<url-pattern>/teaUploadPic</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于教师端修改自己的密码 -->
+	<servlet>
+		<servlet-name>teaModifyPasswordServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.TeaModifyPasswordServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>teaModifyPasswordServlet</servlet-name>
+		<url-pattern>/teaModifyPassword</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于获得本门课未签到的学生信息 -->
+	<servlet>
+		<servlet-name>getUnsignedStudentsServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.GetUnsignedStudentsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getUnsignedStudentsServlet</servlet-name>
+		<url-pattern>/getUnsignedStudents</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于添加新的学生信息 -->
+	<servlet>
+		<servlet-name>addNewStudentSignStateServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.AddNewStudentSignStateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addNewStudentSignStateServlet</servlet-name>
+		<url-pattern>/addNewStudentSignState</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于让服务器生成相关报表并且下载。 -->
+	<servlet>
+		<servlet-name>getSignedReportServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.GetSignedReportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getSignedReportServlet</servlet-name>
+		<url-pattern>/getSignedReport</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用于教师端获得某一门课的所有学生列表。 -->
+	<servlet>
+		<servlet-name>getCourseStudentListServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.GetCourseStudentListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getCourseStudentListServlet</servlet-name>
+		<url-pattern>/getCourseStudentList</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>teaChatMessageAddServlet</servlet-name>
+		<servlet-class>csust.sign.teaServlet.TeaChatMessageAddServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>teaChatMessageAddServlet</servlet-name>
+		<url-pattern>/teaChatMessageAdd</url-pattern>
+	</servlet-mapping>
+
 </web-app>
 
 
